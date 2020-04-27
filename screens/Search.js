@@ -8,7 +8,7 @@ import SearchScreen from "./components/SearchScreen";
 const Search = () => {
   return (
     <View style={pageStyles.screen}>
-      <Capcelera title="Search SDJFHGDKFJHGADS"></Capcelera>
+      <Capcelera title="Search"></Capcelera>
       <View style={pageStyles.cos}>
         {/*Anna*/}
         <SearchScreen />
