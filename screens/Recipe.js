@@ -11,7 +11,6 @@ import {
 import { pageStyles } from "../styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
-//https://www.npmjs.com/package/react-native-tab-view?activeTab=readme
 import Capcelera from "./components/Capcelera";
 import Ingredient from "./components/Ingredient";
 
@@ -56,6 +55,7 @@ const RightRoute = () => {
   }
 };
 
+//Replantejar per posar cuki la imatge
 const LeftRoute = () => {
   let image = response.recipe.image;
   if (image == null) {
