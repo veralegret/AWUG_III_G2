@@ -29,11 +29,7 @@ export default function App() {
           options={{ tabBarIcon: Recipe.Icon }}
         ></Tab.Screen>
 
-        <Tab.Screen
-          name="Search"
-          component={Search}
-          options={{ tabBarIcon: Search.Icon }}
-        ></Tab.Screen>
+
         <Tab.Screen
           name="Day"
           component={DayScreen}
@@ -43,6 +39,12 @@ export default function App() {
           name="Week"
           component={WeekScreen}
           options={{ tabBarIcon: WeekScreen.Icon }}
+        ></Tab.Screen>
+
+        <Tab.Screen
+          name="Search"
+          component={Search}
+          options={{ tabBarIcon: Search.Icon }}
         ></Tab.Screen>
         <Tab.Screen
           name="List"
