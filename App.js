@@ -3,6 +3,9 @@ import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+//Mobx imports
+import "mobx-react/batchingForReactNative";
+
 import WeekScreen from "./screens/WeekScreen.js";
 import DayScreen from "./screens/DayScreen.js";
 import ListScreen from "./screens/ListScreen.js";
@@ -28,7 +31,6 @@ export default function App() {
           component={Recipe}
           options={{ tabBarIcon: Recipe.Icon }}
         ></Tab.Screen>
-
 
         <Tab.Screen
           name="Day"
