@@ -88,20 +88,26 @@ class PM_Model {
       day.meals.cena = null;
     });
   }
+
   /* 
   "ingredients" : [ {
       "text" : "1/2 cup olive oil",
       "weight" : 108.0
     },
    */
+
   @observable food = null;
 
+  //Quan afegim una recepta
   @action updateFood({ recipe }) {
     recipe.ingredients.forEach((ingredient) => {
       this.food.push(ingredient.text);
     });
   }
+  //Quan cambiem una recepta
   @action deleteFoodFromMeal({ recipe }) {}
+
+  //Quan fem la compra setmanal
   @action deleteWeekFood() {
     while (this.food.length > 0) {
       this.food.pop();
