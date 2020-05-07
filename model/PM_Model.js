@@ -53,25 +53,25 @@ class PM_Model {
     switch (meal) {
       case 0:
         if (this.week[day].meals.desayuno != null) {
-          deleteFoodFromMeal(this.week[day].meals.desayuno);
+          this.week[day].meals.desayuno = null;
         }
         this.week[day].meals.desayuno = recipe;
         break;
       case 1:
         if (this.week[day].meals.comida != null) {
-          deleteFoodFromMeal(this.week[day].meals.comida);
+          this.week[day].meals.comida = null;
         }
         this.week[day].meals.comida = recipe;
         break;
       case 2:
         if (this.week[day].meals.merienda != null) {
-          deleteFoodFromMeal(this.week[day].meals.merienda);
+          this.week[day].meals.merienda = null;
         }
         this.week[day].meals.merienda = recipe;
         break;
       case 3:
         if (this.week[day].meals.cena != null) {
-          deleteFoodFromMeal(this.week[day].meals.cena);
+          this.week[day].meals.cena = null;
         }
         this.week[day].meals.cena = recipe;
         break;
@@ -87,31 +87,6 @@ class PM_Model {
       day.meals.merienda = null;
       day.meals.cena = null;
     });
-  }
-
-  /* 
-  "ingredients" : [ {
-      "text" : "1/2 cup olive oil",
-      "weight" : 108.0
-    },
-   */
-
-  @observable food = null;
-
-  //Quan afegim una recepta
-  @action updateFood({ recipe }) {
-    recipe.ingredients.forEach((ingredient) => {
-      this.food.push(ingredient.text);
-    });
-  }
-  //Quan cambiem una recepta
-  @action deleteFoodFromMeal({ recipe }) {}
-
-  //Quan fem la compra setmanal
-  @action deleteWeekFood() {
-    while (this.food.length > 0) {
-      this.food.pop();
-    }
   }
 }
 
