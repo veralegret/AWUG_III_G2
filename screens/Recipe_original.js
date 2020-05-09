@@ -22,8 +22,6 @@ const response = {
     source: "No Recipes",
     url: "http://norecipes.com/recipe/chicken-paprikash/",
     yield: 4.0,
-    dietLabels: ["Low-Carb"],
-    healthLabels: ["Sugar-Conscious", "Peanut-Free", "Tree-Nut-Free"],
     ingredientLines: [
       "640 grams chicken - drumsticks and thighs ( 3 whole chicken legs cut apart)",
       "1/2 teaspoon salt",
@@ -75,30 +73,9 @@ const LeftRoute = () => {
           </Text>
         </TouchableHighlight>
         <Image
-          style={[pageStyles.recipeImg, { height: 300 }]}
+          style={[pageStyles.recipeImg, { height: 400 }]}
           source={{ uri: image }}
         />
-
-        <View>
-          <View>
-            <Text style={pageStyles.text_titol_etiqueta}>DIETA</Text>
-            <View style={pageStyles.linea_horitzontal} />
-            <Text style={pageStyles.text_etiqueta}>
-              {response.recipe.dietLabels}
-            </Text>
-          </View>
-        </View>
-
-        <View style={{ marginTop: 10 }}>
-          <View>
-            <Text style={pageStyles.text_titol_etiqueta}>DIETA</Text>
-            <View style={pageStyles.linea_horitzontal} />
-            <Text style={pageStyles.text_etiqueta}>
-              {response.recipe.healthLabels}
-            </Text>
-          </View>
-        </View>
-
         {/* <View style={pageStyles.cos}>
           <Text>Puntuación: {response.recipe.yield}/5</Text>
         </View> */}

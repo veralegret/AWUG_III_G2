@@ -272,4 +272,28 @@ export const pageStyles = StyleSheet.create({
   tabText: {
     color: "grey",
   },
+
+  text_titol_etiqueta: {
+    textAlign: "left",
+    textAlignVertical: "center",
+    marginLeft: 18,
+    margin: 6,
+    color: GRIS_FORT,
+    fontSize: 18,
+  },
+
+  text_etiqueta: {
+    textAlign: "left",
+    textAlignVertical: "center",
+    margin: 5,
+    color: GRIS_FORT,
+    fontSize: 18,
+  },
+
+  linea_horitzontal: {
+    borderBottomColor: GRIS_FLUIX,
+    borderBottomWidth: 1.8,
+    marginLeft: 5,
+    marginRight: 250,
+  },
 });
