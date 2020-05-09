@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { pageStyles } from "../styles";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -6,34 +6,36 @@ import Capcelera from "./components/Capcelera";
 import { FlatList } from "react-native-gesture-handler";
 import DayofWeek from "./components/DayofWeek";
 
+//model imports
+import { observer } from "mobx-react";
+import { PM_context } from "../model/PM_Model";
+
 const Separator = () => <View style={pageStyles.separator} />;
 
-const week = [
-  { day: 1, meals: [false, true, true, true] },
-  { day: 2, meals: [true, false, true, true] },
-  { day: 3, meals: [true, false, true, true] },
-  { day: 4, meals: [true, false, true, true] },
-  { day: 5, meals: [true, true, false, true] },
-  { day: 6, meals: [true, true, true, false] },
-  { day: 0, meals: [false, true, true, true] },
-];
-const WeekScreen = () => {
+const WeekScreen = observer(() => {
+  const pm = useContext(PM_context);
+
+  if (pm.week == null) {
+    return (
+      <View style={pageStyles.screen}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
   return (
     <View style={pageStyles.screen}>
       <Capcelera title="Semana"></Capcelera>
       <View style={pageStyles.cos}>
         <FlatList
-          data={week}
-          renderItem={({ item }) => (
-            <DayofWeek day={item} /* navigation={navigation} */ />
-          )}
+          data={pm.week}
+          renderItem={({ item }) => <DayofWeek day={item} />}
           keyExtractor={(item) => "key" + item.day}
           ItemSeparatorComponent={Separator}
         />
       </View>
     </View>
   );
-};
+});
 WeekScreen.Icon = ({ color, size }) => (
   <MaterialIcons name="view-week" size={size} color={color} />
 );

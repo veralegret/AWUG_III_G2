@@ -2,9 +2,7 @@ import React from "react";
 import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import MealImage from "./MealImage";
-/* import { createStackNavigator } from "@react-navigation/stack";
-
-const Stack = createStackNavigator(); */
+import { observer } from "mobx-react";
 
 var weekDays = [
   "Domingo",
@@ -19,7 +17,7 @@ var weekDays = [
 var today = new Date().getDay();
 var num = new Date().getDate();
 
-const DayofWeek = ({ day /* navigation */ }) => {
+const DayofWeek = observer(({ day }) => {
   var res = 0;
   if (day.day == 0) {
     res = today - 7;
@@ -27,10 +25,6 @@ const DayofWeek = ({ day /* navigation */ }) => {
     res = today - day.day;
   }
   var dia = num - res;
-  /* 
-  const GoToDay = ({ day }) => {
-    navigation.navigate("DayScreen", { dia: day });
-  }; */
 
   return (
     <TouchableHighlight
@@ -44,15 +38,15 @@ const DayofWeek = ({ day /* navigation */ }) => {
           <Text>{weekDays[day.day]}</Text>
         </View>
         <View style={styles.mealRow}>
-          <MealImage meal={0} state={day.meals[0]} style={styles.img} />
-          <MealImage meal={1} state={day.meals[1]} style={styles.img} />
-          <MealImage meal={2} state={day.meals[2]} style={styles.img} />
-          <MealImage meal={3} state={day.meals[3]} style={styles.img} />
+          <MealImage meal={0} state={day.meals.desayuno} style={styles.img} />
+          <MealImage meal={1} state={day.meals.comida} style={styles.img} />
+          <MealImage meal={2} state={day.meals.merienda} style={styles.img} />
+          <MealImage meal={3} state={day.meals.cena} style={styles.img} />
         </View>
       </View>
     </TouchableHighlight>
   );
-};
+});
 
 export default DayofWeek;
 
