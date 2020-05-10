@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { TouchableHighlight } from "react-native-gesture-handler";
 import MealImage from "./MealImage";
 import { observer } from "mobx-react";
+import { useNavigation } from '@react-navigation/native';
 
 var weekDays = [
   "Domingo",
@@ -18,6 +19,8 @@ var today = new Date().getDay();
 var num = new Date().getDate();
 
 const DayofWeek = observer(({ day }) => {
+  const navigation = useNavigation();
+
   var res = 0;
   if (day.day == 0) {
     res = today - 7;
@@ -26,11 +29,21 @@ const DayofWeek = observer(({ day }) => {
   }
   var dia = num - res;
 
+  const GoToDay = () => {
+    // 
+    // Exemple de com moure's entre diferents tabs. 
+    // Actualitzant el model es pot comunicar quin dia és l'"actual"
+    // perquè això afecti el tab "Day".
+    //   -- Pau (10/05/2020 23:08)
+    //
+    navigation.navigate("Day");
+  }
+
   return (
     <TouchableHighlight
       activeOpacity={0.6}
       underlayColor="#DDDDDD"
-      /* onPress={GoToDay(day)} */
+      onPress={GoToDay}
     >
       <View style={styles.weekDay}>
         <View style={styles.dayInfo}>
