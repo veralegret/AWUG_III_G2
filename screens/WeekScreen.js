@@ -8,12 +8,12 @@ import DayofWeek from "./components/DayofWeek";
 
 //model imports
 import { observer } from "mobx-react";
-import { PM_context } from "../model/PM_Model";
+import { PM_Context } from "../model/PM_Model";
 
 const Separator = () => <View style={pageStyles.separator} />;
 
 const WeekScreen = observer(() => {
-  const pm = useContext(PM_context);
+  const pm = useContext(PM_Context);
 
   if (pm.week == null) {
     return (
