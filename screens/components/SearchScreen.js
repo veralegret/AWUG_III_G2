@@ -8,7 +8,9 @@ import {
   ActivityIndicator,
   TextInput,
   Dimensions,
+  TouchableOpacity,
 } from "react-native";
+import { pageStyles } from "../../styles";
 
 const ReceptaCurta = ({ label, source, image }) => {
   return (
@@ -29,8 +31,9 @@ const Separator = () => <View style={styles.separator} />;
 const Search = () => {
   const [recipelist, setRecipelist] = useState(null);
   const [text, setText] = useState(null);
-  const updateSearch = (val) => {
-    setText(val);
+  const [textintroduit, setTextIntroduit] = useState(null);
+  const updateSearch = () => {
+    setText(textintroduit);
   };
 
   //Hook. Rep una funció (que s'executarà en certs moments) i un array (buit, i si no el poses, el useEfect s'executa cada cop que es refresca la llista)
@@ -38,8 +41,8 @@ const Search = () => {
     () => {
       fetch(
         "https://api.edamam.com/search?q=" +
-          text +
-          "&app_id=b8f6fc18&app_key=3ba492833144f23779ec29839285f849&from=0&to=30"
+        text +
+        "&app_id=b8f6fc18&app_key=3ba492833144f23779ec29839285f849&from=0&to=30"
       )
         .then((response) => response.json())
         .catch((error) => console.error("Error:", error))
@@ -52,9 +55,7 @@ const Search = () => {
           setRecipelist(fetchedRecipelist);
         });
     },
-    [
-      text,
-    ] /* només es crida la funció del useEffect el primer render si està buit - Si canvia algún valor del array "text" es crida el useEffect */
+    [text] /* només es crida la funció del useEffect el primer render si està buit - Si canvia algún valor del array "text" es crida el useEffect */
   );
 
   if (recipelist == null) {
@@ -71,9 +72,12 @@ const Search = () => {
       <View>
         <TextInput
           style={styles.textInput}
-          placeholder="Search.."
-          onChangeText={(val) => updateSearch(val)}
+          placeholder="Search a recipe..."
+          onChangeText={(textintroduit) => setTextIntroduit(textintroduit)}
         />
+        <TouchableOpacity onPress={() => updateSearch()}>
+          <Text style={styles.boto}>SEARCH</Text>
+        </TouchableOpacity>
       </View>
       <FlatList
         data={recipelist}
@@ -81,7 +85,7 @@ const Search = () => {
         keyExtractor={(recepta) => recepta.label + recepta.image}
         ItemSeparatorComponent={Separator}
       />
-    </View>
+    </View >
   );
 };
 
@@ -147,6 +151,18 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     marginTop: 10,
     padding: 10,
+    backgroundColor: "#fff",
+  },
+  boto: {
+    textAlign: "center",
+    textAlignVertical: "center",
+    borderWidth: 2,
+    borderRadius: 5,
+    height: 50,
+    marginBottom: 10,
+    //marginVertical: 10,
+    color: "#9ccc65",
+    borderColor: "#9ccc65",
     backgroundColor: "#fff",
   },
 });
