@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   Linking,
+  ScrollView,
 } from "react-native";
 import { pageStyles } from "../styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -64,7 +65,7 @@ const LeftRoute = () => {
     return <ActivityIndicator size="large" color="#9ccc65" />;
   } else {
     return (
-      <View style={pageStyles.cos}>
+      <ScrollView style={pageStyles.cos}>
         <TouchableHighlight
           onPress={() => {
             Linking.openURL(response.recipe.url);
@@ -79,7 +80,7 @@ const LeftRoute = () => {
           source={{ uri: image }}
         />
 
-        <View>
+        {/* <View>
           <View>
             <Text style={pageStyles.text_titol_etiqueta}>DIETA</Text>
             <View style={pageStyles.linea_horitzontal} />
@@ -98,13 +99,26 @@ const LeftRoute = () => {
             </Text>
           </View>
         </View>
-
-        {/* <View style={pageStyles.cos}>
-          <Text>Puntuación: {response.recipe.yield}/5</Text>
-        </View> */}
-      </View>
+ */}
+        <View style={{ marginTop: 10 }}>
+          <FlatList
+            data={response.recipe.healthLabels}
+            renderItem={({ item }) => <HealthView label={item} />}
+            keyExtractor={(item) => item}
+          />
+        </View>
+      </ScrollView>
     );
   }
+};
+
+const HealthView = ({ label }) => {
+  return (
+    <View>
+      <View style={pageStyles.linea_horitzontal} />
+      <Text style={pageStyles.text_etiqueta}>{label}</Text>
+    </View>
+  );
 };
 
 const initialLayout = { width: Dimensions.get("window").width };
