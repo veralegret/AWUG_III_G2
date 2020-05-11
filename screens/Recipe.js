@@ -66,15 +66,6 @@ const LeftRoute = () => {
   } else {
     return (
       <ScrollView style={pageStyles.cos}>
-        <TouchableHighlight
-          onPress={() => {
-            Linking.openURL(response.recipe.url);
-          }}
-        >
-          <Text style={pageStyles.boto}>
-            Pasos de la receta en "{response.recipe.source}"
-          </Text>
-        </TouchableHighlight>
         <Image
           style={[pageStyles.recipeImg, { height: 300 }]}
           source={{ uri: image }}
@@ -100,12 +91,30 @@ const LeftRoute = () => {
           </View>
         </View>
  */}
-        <View style={{ marginTop: 10 }}>
-          <FlatList
-            data={response.recipe.healthLabels}
-            renderItem={({ item }) => <HealthView label={item} />}
-            keyExtractor={(item) => item}
-          />
+        <TouchableHighlight
+          onPress={() => {
+            Linking.openURL(response.recipe.url);
+          }}
+        >
+          <Text style={pageStyles.boto3}>
+            Pasos de la receta en "{response.recipe.source}"
+          </Text>
+        </TouchableHighlight>
+        <View>
+          <View style={pageStyles.fila}>
+            <FlatList
+              data={response.recipe.healthLabels}
+              renderItem={({ item }) => <HealthView label={item} />}
+              keyExtractor={(item) => item}
+            />
+          </View>
+          <View style={pageStyles.fila}>
+            <FlatList
+              data={response.recipe.dietLabels}
+              renderItem={({ item }) => <DietView label={item} />}
+              keyExtractor={(item) => item}
+            />
+          </View>
         </View>
       </ScrollView>
     );
@@ -115,8 +124,21 @@ const LeftRoute = () => {
 const HealthView = ({ label }) => {
   return (
     <View>
-      <View style={pageStyles.linea_horitzontal} />
-      <Text style={pageStyles.text_etiqueta}>{label}</Text>
+      <View style={pageStyles.fila}>
+        <Text style={pageStyles.boleta}>{"\u2B24"}</Text>
+        <Text style={pageStyles.text_etiqueta}>{label}</Text>
+      </View>
+    </View>
+  );
+};
+
+const DietView = ({ label }) => {
+  return (
+    <View>
+      <View style={pageStyles.fila}>
+        <Text style={pageStyles.boleta}>{"\u2B24"}</Text>
+        <Text style={pageStyles.text_etiqueta}>{label}</Text>
+      </View>
     </View>
   );
 };
@@ -163,8 +185,9 @@ const Recipe = () => {
           )}
         />
       </View>
+
       <TouchableHighlight style={pageStyles.botoView}>
-        <Text style={pageStyles.boto}>SELECCIONAR RECETA</Text>
+        <Text style={pageStyles.boto_recepta}>SELECCIONAR RECETA</Text>
       </TouchableHighlight>
     </View>
   );
