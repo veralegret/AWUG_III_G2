@@ -1,15 +1,16 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Ingredient = ({ ingredient }) => {
   return (
     <View style={styles.ingr}>
       <View style={styles.iconPlace}>
-        <FontAwesome
-          name="cart-arrow-down"
-          color="#9ccc65"
+        <MaterialCommunityIcons
+          name="food-variant"
           size={20}
+          color="#9ccc65"
           style={styles.icon}
         />
       </View>
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
   ingr: {
     flexDirection: "row",
     height: 70,
-    padding: 10,
+    paddingRight: 50,
     alignItems: "center",
     //borderBottomWidth: 1,
   },

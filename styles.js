@@ -287,7 +287,9 @@ export const pageStyles = StyleSheet.create({
     textAlignVertical: "center",
     margin: 5,
     color: GRIS_FORT,
-    fontSize: 18,
+    fontSize: 14,
+    width: "auto",
+    padding: 5,
   },
 
   linea_horitzontal: {
@@ -295,5 +297,29 @@ export const pageStyles = StyleSheet.create({
     borderBottomWidth: 1.8,
     marginLeft: 5,
     marginRight: 250,
+  },
+
+  boleta: {
+    textAlign: "left",
+    textAlignVertical: "center",
+    margin: 5,
+    color: GRIS_FORT,
+    fontSize: 8,
+    width: "auto",
+    paddingHorizontal: 3,
+    paddingVertical: 10,
+  },
+
+  boto_recepta: {
+    textAlign: "center",
+    textAlignVertical: "center",
+    borderWidth: 2,
+    borderRadius: 5,
+    marginHorizontal: 10,
+    marginVertical: 20,
+    color: VERD,
+    borderColor: VERD,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
 });
