@@ -2,20 +2,6 @@ import { observable, action } from "mobx";
 import React, { createContext } from "react";
 
 class PM_Model {
-  @observable search = null;
-
-  @action async loadSearch() {
-    //Com fem un search general si la API requereix el parametre 'q'
-    //fetch("https://api.edamam.com/search?q=" + text + "&app_id=b8f6fc18&app_key=3ba492833144f23779ec29839285f849&from=0&to=30");
-    const response = await fetch("#");
-    const json = await response.json();
-    this.search = json.hits.map((recepta) => ({
-      label: recepta.recipe.label,
-      source: recepta.recipe.source,
-      image: recepta.recipe.image,
-    }));
-  }
-
   @observable week = [
     {
       day: 1,
@@ -46,6 +32,22 @@ class PM_Model {
       meals: { desayuno: null, comida: null, merienda: null, cena: null },
     },
   ];
+
+  /* 
+  @observable week = null;
+
+  @action async loadWeek() {
+    for (var i = 1; i < 7; i++) {
+      this.week.push({
+        day: i,
+        meals: { desayuno: null, comida: null, merienda: null, cena: null },
+      });
+    }
+    this.week.push({
+      day: 0,
+      meals: { desayuno: null, comida: null, merienda: null, cena: null },
+    });
+  } */
 
   //'day' i 'meal' serien index, int
   //'recipe' seria un objecte json de una recepta concreta
@@ -80,6 +82,8 @@ class PM_Model {
     }
     this.updateFood(recipe);
   }
+
+  //Acció d'esborrar la llista de la compra
   @action deleteWeekMeals() {
     this.week.forEach((day) => {
       day.meals.desayuno = null;

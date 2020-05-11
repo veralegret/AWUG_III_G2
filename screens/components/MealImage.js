@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, Image } from "react-native";
+import { observer } from "mobx-react";
 
-const MealImage = ({ meal, state, style }) => {
+const MealImage = observer(({ meal, state, style }) => {
   switch (meal) {
     case 0:
-      if (state) {
+      if (state != null) {
         return (
           <Image
             style={style}
@@ -21,7 +22,7 @@ const MealImage = ({ meal, state, style }) => {
       }
       break;
     case 1:
-      if (state) {
+      if (state != null) {
         return (
           <Image
             style={style}
@@ -38,7 +39,7 @@ const MealImage = ({ meal, state, style }) => {
       }
       break;
     case 2:
-      if (state) {
+      if (state != null) {
         return (
           <Image
             style={style}
@@ -55,7 +56,7 @@ const MealImage = ({ meal, state, style }) => {
       }
       break;
     case 3:
-      if (state) {
+      if (state != null) {
         return (
           <Image
             style={style}
@@ -72,7 +73,7 @@ const MealImage = ({ meal, state, style }) => {
       }
       break;
   }
-};
+});
 
 export default MealImage;
 
