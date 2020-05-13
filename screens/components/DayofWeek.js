@@ -28,15 +28,12 @@ const DayofWeek = observer(({ day }) => {
     res = today - day.day;
   }
   var dia = num - res;
+  var diaSemana = weekDays[day.day];
 
   const GoToDay = () => {
-    //
-    // Exemple de com moure's entre diferents tabs.
-    // Actualitzant el model es pot comunicar quin dia és l'"actual"
-    // perquè això afecti el tab "Day".
-    //   -- Pau (10/05/2020 23:08)
-    //
-    navigation.navigate("Day");
+    console.log(dia);
+    console.log(diaSemana);
+    navigation.navigate("Day", { dia: dia, semana: diaSemana });
   };
 
   return (
@@ -48,7 +45,7 @@ const DayofWeek = observer(({ day }) => {
       <View style={styles.weekDay}>
         <View style={styles.dayInfo}>
           <Text style={styles.number}>{dia}</Text>
-          <Text>{weekDays[day.day]}</Text>
+          <Text>{diaSemana}</Text>
         </View>
         <View style={styles.mealRow}>
           <MealImage meal={0} state={day.meals.desayuno} style={styles.img} />
