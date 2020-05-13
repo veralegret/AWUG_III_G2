@@ -178,11 +178,12 @@ export const pageStyles = StyleSheet.create({
     textAlignVertical: "center",
     borderWidth: 2,
     borderRadius: 5,
-    height: 50,
-    margin: 10,
+    marginHorizontal: 10,
+    marginVertical: 20,
     color: VERD,
     borderColor: VERD,
-    backgroundColor: "#fff",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
 
   boto2: {
