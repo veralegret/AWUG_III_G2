@@ -31,9 +31,7 @@ const DayofWeek = observer(({ day }) => {
   var diaSemana = weekDays[day.day];
 
   const GoToDay = () => {
-    console.log(dia);
-    console.log(diaSemana);
-    navigation.navigate("Day", { dia: dia, semana: diaSemana });
+    navigation.navigate("Day", { dia: dia, semana: day.day });
   };
 
   return (
