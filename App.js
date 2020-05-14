@@ -39,6 +39,7 @@ export default function App() {
             component={DayScreen}
             options={{ tabBarIcon: DayScreen.Icon }}
           ></Tab.Screen>
+
           <Tab.Screen
             name="Week"
             component={WeekScreen}

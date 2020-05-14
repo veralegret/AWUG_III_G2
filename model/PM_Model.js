@@ -9,15 +9,30 @@ class PM_Model {
     },
     {
       day: 2,
-      meals: { desayuno: null, comida: null, merienda: null, cena: null },
+      meals: {
+        desayuno: null,
+        comida: { recipe: "hi" },
+        merienda: null,
+        cena: null,
+      },
     },
     {
       day: 3,
-      meals: { desayuno: null, comida: null, merienda: null, cena: null },
+      meals: {
+        desayuno: {},
+        comida: null,
+        merienda: { recipe: "hi" },
+        cena: null,
+      },
     },
     {
       day: 4,
-      meals: { desayuno: null, comida: null, merienda: null, cena: null },
+      meals: {
+        desayuno: { recipe: "hi" },
+        comida: { recipe: "hi" },
+        merienda: null,
+        cena: null,
+      },
     },
     {
       day: 5,
