@@ -71,26 +71,6 @@ const LeftRoute = () => {
           source={{ uri: image }}
         />
 
-        {/* <View>
-          <View>
-            <Text style={pageStyles.text_titol_etiqueta}>DIETA</Text>
-            <View style={pageStyles.linea_horitzontal} />
-            <Text style={pageStyles.text_etiqueta}>
-              {response.recipe.dietLabels}
-            </Text>
-          </View>
-        </View>
-
-        <View style={{ marginTop: 10 }}>
-          <View>
-            <Text style={pageStyles.text_titol_etiqueta}>DIETA</Text>
-            <View style={pageStyles.linea_horitzontal} />
-            <Text style={pageStyles.text_etiqueta}>
-              {response.recipe.healthLabels}
-            </Text>
-          </View>
-        </View>
- */}
         <TouchableHighlight
           onPress={() => {
             Linking.openURL(response.recipe.url);
@@ -108,6 +88,7 @@ const LeftRoute = () => {
               keyExtractor={(item) => item}
             />
           </View>
+
           <View style={pageStyles.fila}>
             <FlatList
               data={response.recipe.dietLabels}
@@ -122,25 +103,79 @@ const LeftRoute = () => {
 };
 
 const HealthView = ({ label }) => {
-  return (
-    <View>
-      <View style={pageStyles.fila}>
-        <Text style={pageStyles.boleta}>{"\u2B24"}</Text>
-        <Text style={pageStyles.text_etiqueta}>{label}</Text>
-      </View>
-    </View>
-  );
+  let salut = response.recipe.healthLabels;
+  switch (label) {
+    case "Peanut-Free":
+      return (
+        <Image
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/peanut-free.png")}
+        />
+      );
+
+    case "Sugar-Conscious":
+      return (
+        <Image
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/sugar-conscious.png")}
+        />
+      );
+
+    case "Tree-Nut-Free":
+      return (
+        <Image
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/tree-nut-free.png")}
+        />
+      );
+
+    case "Gluten-Free":
+      return (
+        <Image
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/gluten-free.png")}
+        />
+      );
+
+    case "Egg-Free":
+      return (
+        <Image
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/egg-free.png")}
+        />
+      );
+
+    default:
+      return (
+        <View>
+          <View style={pageStyles.fila}>
+            <Text style={pageStyles.boleta}>{"\u2B24"}</Text>
+            <Text style={pageStyles.text_etiqueta}>{label}</Text>
+          </View>
+        </View>
+      );
+  }
 };
 
 const DietView = ({ label }) => {
-  return (
-    <View>
-      <View style={pageStyles.fila}>
-        <Text style={pageStyles.boleta}>{"\u2B24"}</Text>
-        <Text style={pageStyles.text_etiqueta}>{label}</Text>
+  let dieta = response.recipe.dietLabels;
+  if ((dieta = "Low-Carb")) {
+    return (
+      <Image
+        style={pageStyles.imatge_etiqueta}
+        source={require("../assets/img/etiquetes/low-carb.png")}
+      />
+    );
+  } else {
+    return (
+      <View>
+        <View style={pageStyles.fila}>
+          <Text style={pageStyles.boleta}>{"\u2B24"}</Text>
+          <Text style={pageStyles.text_etiqueta}>{label}</Text>
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
 };
 
 const initialLayout = { width: Dimensions.get("window").width };

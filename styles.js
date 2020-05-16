@@ -323,4 +323,15 @@ export const pageStyles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
+
+  imatge_etiqueta: {
+    height: 50,
+    width: 50,
+    borderRadius: 30,
+    borderColor: "#9ccc65",
+    borderWidth: 1,
+    marginRight: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
