@@ -4,13 +4,10 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   ActivityIndicator,
   TextInput,
-  Dimensions,
   TouchableOpacity,
 } from "react-native";
-import { pageStyles } from "../../styles";
 
 import ReceptaCurta from "./ReceptaCurta";
 
