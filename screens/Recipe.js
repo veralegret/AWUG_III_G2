@@ -107,42 +107,66 @@ const HealthView = ({ label }) => {
   switch (label) {
     case "Peanut-Free":
       return (
-        <Image
+        <svg>
           style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/peanut-free.png")}
-        />
+          source={require("../assets/img/etiquetes/peanut-free.svg")}
+        </svg>
       );
 
     case "Sugar-Conscious":
       return (
-        <Image
+        <svg>
           style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/sugar-conscious.png")}
-        />
+          source={require("../assets/img/etiquetes/sugar-conscious.svg")}
+        </svg>
       );
 
     case "Tree-Nut-Free":
       return (
-        <Image
+        <svg>
           style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/tree-nut-free.png")}
-        />
+          source={require("../assets/img/etiquetes/tree-nut-free.svg")}
+        </svg>
       );
 
     case "Gluten-Free":
       return (
-        <Image
+        <svg>
           style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/gluten-free.png")}
-        />
+          source={require("../assets/img/etiquetes/gluten-free.svg")}
+        </svg>
       );
 
     case "Egg-Free":
       return (
-        <Image
+        <svg>
           style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/egg-free.png")}
-        />
+          source={require("../assets/img/etiquetes/egg-free.svg")}
+        </svg>
+      );
+
+    case "Vegan":
+      return (
+        <svg>
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/vegan.svg")}
+        </svg>
+      );
+
+    case "Vegetarian":
+      return (
+        <svg>
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/vegetarian.svg")}
+        </svg>
+      );
+
+    case "Vegetarian":
+      return (
+        <svg>
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/vegetarian.svg")}
+        </svg>
       );
 
     default:
@@ -159,22 +183,48 @@ const HealthView = ({ label }) => {
 
 const DietView = ({ label }) => {
   let dieta = response.recipe.dietLabels;
-  if ((dieta = "Low-Carb")) {
-    return (
-      <Image
-        style={pageStyles.imatge_etiqueta}
-        source={require("../assets/img/etiquetes/low-carb.png")}
-      />
-    );
-  } else {
-    return (
-      <View>
-        <View style={pageStyles.fila}>
-          <Text style={pageStyles.boleta}>{"\u2B24"}</Text>
-          <Text style={pageStyles.text_etiqueta}>{label}</Text>
+  switch (label) {
+    case "Alcohol-Free":
+      return (
+        <Image
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/no-alcohol.svg")}
+        />
+      );
+
+    case "Low-Carb":
+      return (
+        <Image
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/low-carb.svg")}
+        />
+      );
+
+    case "High-Protein":
+      return (
+        <Image
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/high-protein.svg")}
+        />
+      );
+
+    case "High-Fiber":
+      return (
+        <Image
+          style={pageStyles.imatge_etiqueta}
+          source={require("../assets/img/etiquetes/high-fiber.svg")}
+        />
+      );
+
+    default:
+      return (
+        <View>
+          <View style={pageStyles.fila}>
+            <Text style={pageStyles.boleta}>{"\u2B24"}</Text>
+            <Text style={pageStyles.text_etiqueta}>{label}</Text>
+          </View>
         </View>
-      </View>
-    );
+      );
   }
 };
 
