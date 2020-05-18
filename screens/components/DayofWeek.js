@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
-import { TouchableHighlight } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import MealImage from "./MealImage";
 import { observer } from "mobx-react";
 import { useNavigation } from "@react-navigation/native";
@@ -35,7 +35,7 @@ const DayofWeek = observer(({ day }) => {
   };
 
   return (
-    <TouchableHighlight
+    <TouchableOpacity
       activeOpacity={0.6}
       underlayColor="#DDDDDD"
       onPress={GoToDay}
@@ -52,7 +52,7 @@ const DayofWeek = observer(({ day }) => {
           <MealImage meal={3} state={day.meals.cena} style={styles.img} />
         </View>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 });
 
