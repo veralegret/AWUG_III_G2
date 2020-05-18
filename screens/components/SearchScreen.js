@@ -23,24 +23,30 @@ const Search = () => {
     setText(textintroduit);
   };
 
+  let espera = false;
+
   //Hook. Rep una funció (que s'executarà en certs moments) i un array (buit, i si no el poses, el useEfect s'executa cada cop que es refresca la llista)
   useEffect(
     () => {
-      fetch(
-        "https://api.edamam.com/search?q=" +
+      if (espera == false) {
+        espera = true;
+        fetch(
+          "https://api.edamam.com/search?q=" +
           text +
           "&app_id=b8f6fc18&app_key=3ba492833144f23779ec29839285f849&from=0&to=30"
-      )
-        .then((response) => response.json())
-        .catch((error) => console.error("Error:", error))
-        .then((json) => {
-          const fetchedRecipelist = json.hits.map((recepta) => ({
-            label: recepta.recipe.label,
-            source: recepta.recipe.source,
-            image: recepta.recipe.image,
-          }));
-          setRecipelist(fetchedRecipelist);
-        });
+        )
+          .then((response) => response.json())
+          .catch((error) => console.error("Error:", error))
+          .then((json) => {
+            const fetchedRecipelist = json.hits.map((recepta) => ({
+              label: recepta.recipe.label,
+              source: recepta.recipe.source,
+              image: recepta.recipe.image,
+            }));
+            setRecipelist(fetchedRecipelist);
+            espera = false;
+          });
+      }
     },
     [
       text,
