@@ -12,17 +12,7 @@ import {
 } from "react-native";
 import { pageStyles } from "../../styles";
 
-const ReceptaCurta = ({ label, source, image }) => {
-  return (
-    <View style={styles.item}>
-      <Image style={styles.picture} source={{ uri: image }} />
-      <View>
-        <Text style={styles.name}>{label}</Text>
-        <Text style={styles.font}>{source}</Text>
-      </View>
-    </View>
-  );
-};
+import ReceptaCurta from "./ReceptaCurta";
 
 const Separator = () => <View style={styles.separator} />;
 
@@ -41,8 +31,8 @@ const Search = () => {
     () => {
       fetch(
         "https://api.edamam.com/search?q=" +
-        text +
-        "&app_id=b8f6fc18&app_key=3ba492833144f23779ec29839285f849&from=0&to=30"
+          text +
+          "&app_id=b8f6fc18&app_key=3ba492833144f23779ec29839285f849&from=0&to=30"
       )
         .then((response) => response.json())
         .catch((error) => console.error("Error:", error))
@@ -55,7 +45,9 @@ const Search = () => {
           setRecipelist(fetchedRecipelist);
         });
     },
-    [text] /* només es crida la funció del useEffect el primer render si està buit - Si canvia algún valor del array "text" es crida el useEffect */
+    [
+      text,
+    ] /* només es crida la funció del useEffect el primer render si està buit - Si canvia algún valor del array "text" es crida el useEffect */
   );
 
   if (recipelist == null) {
@@ -85,7 +77,7 @@ const Search = () => {
         keyExtractor={(recepta) => recepta.label + recepta.image}
         ItemSeparatorComponent={Separator}
       />
-    </View >
+    </View>
   );
 };
 
@@ -100,39 +92,6 @@ const styles = StyleSheet.create({
     height: 6,
     marginLeft: 65,
     marginRight: 25,
-  },
-  item: {
-    flexDirection: "row",
-    height: 70,
-    padding: 10,
-    margin: 2,
-    alignItems: "center",
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 2,
-  },
-  picture: {
-    height: 45,
-    width: 45,
-    borderRadius: 23,
-    backgroundColor: "#ff6f43",
-    marginRight: 10,
-  },
-  name: {
-    fontSize: 16,
-    fontWeight: "bold",
-    paddingRight: 50,
-  },
-  font: {
-    fontSize: 12,
-    color: "#666",
   },
   barrabuscador: {
     backgroundColor: "#eee",
