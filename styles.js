@@ -170,9 +170,6 @@ export const pageStyles = StyleSheet.create({
     fontSize: 18,
     textAlignVertical: "center",
   },
-  botoView: {
-    backgroundColor: "#fff",
-  },
   boto: {
     textAlign: "center",
     textAlignVertical: "center",
@@ -260,18 +257,9 @@ export const pageStyles = StyleSheet.create({
     marginRight: 25,
     backgroundColor: GRIS_FLUIX,
   },
-  recipeImg: {
-    width: Dimensions.get("window").width,
-  },
-  tab: {
-    backgroundColor: "#fafafa",
-  },
 
   indicator: {
     backgroundColor: VERMELL,
-  },
-  tabText: {
-    color: "grey",
   },
 
   text_titol_etiqueta: {
@@ -283,55 +271,10 @@ export const pageStyles = StyleSheet.create({
     fontSize: 18,
   },
 
-  text_etiqueta: {
-    textAlign: "left",
-    textAlignVertical: "center",
-    margin: 5,
-    color: GRIS_FORT,
-    fontSize: 14,
-    width: "auto",
-    padding: 5,
-  },
-
   linea_horitzontal: {
     borderBottomColor: GRIS_FLUIX,
     borderBottomWidth: 1.8,
     marginLeft: 5,
     marginRight: 250,
-  },
-
-  boleta: {
-    textAlign: "left",
-    textAlignVertical: "center",
-    margin: 5,
-    color: GRIS_FORT,
-    fontSize: 8,
-    width: "auto",
-    paddingHorizontal: 3,
-    paddingVertical: 10,
-  },
-
-  boto_recepta: {
-    textAlign: "center",
-    textAlignVertical: "center",
-    borderWidth: 2,
-    borderRadius: 5,
-    marginHorizontal: 10,
-    marginVertical: 20,
-    color: VERD,
-    borderColor: VERD,
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-  },
-
-  imatge_etiqueta: {
-    height: 50,
-    width: 50,
-    borderRadius: 30,
-    borderColor: "#9ccc65",
-    borderWidth: 1,
-    marginRight: 20,
-    justifyContent: "center",
-    alignItems: "center",
   },
 });

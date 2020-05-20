@@ -8,10 +8,13 @@ import {
   Image,
   Linking,
   ScrollView,
+  StyleSheet,
+  ScrollViewComponent,
 } from "react-native";
 import { pageStyles } from "../styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
+import { SvgUri } from "react-native-svg";
 import Capcelera from "./components/Capcelera";
 import Ingredient from "./components/Ingredient";
 
@@ -58,7 +61,6 @@ const RightRoute = () => {
   }
 };
 
-//Replantejar per posar cuki la imatge
 const LeftRoute = () => {
   let image = response.recipe.image;
   if (image == null) {
@@ -67,7 +69,7 @@ const LeftRoute = () => {
     return (
       <ScrollView style={pageStyles.cos}>
         <Image
-          style={[pageStyles.recipeImg, { height: 300 }]}
+          style={[styles.recipeImg, { height: 300 }]}
           source={{ uri: image }}
         />
 
@@ -80,114 +82,162 @@ const LeftRoute = () => {
             Pasos de la receta en "{response.recipe.source}"
           </Text>
         </TouchableHighlight>
-        <View>
-          <View style={pageStyles.fila}>
-            <FlatList
-              data={response.recipe.healthLabels}
-              renderItem={({ item }) => <HealthView label={item} />}
-              keyExtractor={(item) => item}
-            />
-          </View>
 
-          <View style={pageStyles.fila}>
-            <FlatList
-              data={response.recipe.dietLabels}
-              renderItem={({ item }) => <DietView label={item} />}
-              keyExtractor={(item) => item}
-            />
-          </View>
+        <View style={pageStyles.fila}>
+          <HealthView labels={response.recipe.healthLabels} />
+          {/* <FlatList
+            data={response.recipe.healthLabels}
+            renderItem={({ item }) => <HealthView label={item} />}
+            keyExtractor={(item) => item}
+          /> */}
+        </View>
+
+        <View style={pageStyles.fila}>
+          {/* <FlatList
+            data={response.recipe.dietLabels}
+            renderItem={({ item }) => <DietView label={item} />}
+            keyExtractor={(item) => item}
+          /> */}
         </View>
       </ScrollView>
     );
   }
 };
 
-const HealthView = ({ label }) => {
-  let salut = response.recipe.healthLabels;
-  switch (label) {
-    case "Peanut-Free":
-      return (
-        <svg>
-          style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/peanut-free.svg")}
-        </svg>
-      );
-
-    case "Sugar-Conscious":
-      return (
-        <svg>
-          style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/sugar-conscious.svg")}
-        </svg>
-      );
-
-    case "Tree-Nut-Free":
-      return (
-        <svg>
-          style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/tree-nut-free.svg")}
-        </svg>
-      );
-
-    case "Gluten-Free":
-      return (
-        <svg>
-          style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/gluten-free.svg")}
-        </svg>
-      );
-
-    case "Egg-Free":
-      return (
-        <svg>
-          style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/egg-free.svg")}
-        </svg>
-      );
-
-    case "Vegan":
-      return (
-        <svg>
-          style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/vegan.svg")}
-        </svg>
-      );
-
-    case "Vegetarian":
-      return (
-        <svg>
-          style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/vegetarian.svg")}
-        </svg>
-      );
-
-    case "Vegetarian":
-      return (
-        <svg>
-          style={pageStyles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/vegetarian.svg")}
-        </svg>
-      );
-
-    default:
-      return (
-        <View>
-          <View style={pageStyles.fila}>
-            <Text style={pageStyles.boleta}>{"\u2B24"}</Text>
-            <Text style={pageStyles.text_etiqueta}>{label}</Text>
+const HealthView = ({ labels }) => {
+  console.log("health");
+  const res = labels.map((label) => {
+    switch (label) {
+      case "Peanut-Free":
+        return (
+          <View>
+            <Text>{label}</Text>
+            <SvgUri
+              height="50%"
+              width="50%"
+              style={styles.imatge_etiqueta}
+              uri={require("../assets/img/etiquetes/peanut-free.svg")}
+            />
           </View>
-        </View>
-      );
-  }
+        );
+
+      case "Sugar-Conscious":
+        return (
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/sugar-conscious.png")}
+            />
+            <Text>{label}</Text>
+          </View>
+        );
+
+      case "Tree-Nut-Free":
+        return (
+          <View>
+            <Text>{label}</Text>
+            <SvgUri
+              height="50%"
+              width="50%"
+              style={styles.imatge_etiqueta}
+              uri={require("../assets/img/etiquetes/tree-nut-free.svg")}
+            />
+          </View>
+        );
+
+      case "Gluten-Free":
+        return (
+          <View>
+            <Text>{label}</Text>
+            <SvgUri
+              height="50%"
+              width="50%"
+              style={styles.imatge_etiqueta}
+              uri={require("../assets/img/etiquetes/gluten-free.svg")}
+            />
+          </View>
+        );
+
+      case "Egg-Free":
+        return (
+          <View>
+            <Text>{label}</Text>
+            <SvgUri
+              height="50%"
+              width="50%"
+              style={styles.imatge_etiqueta}
+              uri={require("../assets/img/etiquetes/egg-free.svg")}
+            />
+          </View>
+        );
+
+      case "Vegan":
+        return (
+          <View>
+            <Text>{label}</Text>
+            <SvgUri
+              height="50%"
+              width="50%"
+              style={styles.imatge_etiqueta}
+              uri={require("../assets/img/etiquetes/vegan.svg")}
+            />
+          </View>
+        );
+
+      case "Vegetarian":
+        return (
+          <View>
+            <Text>{label}</Text>
+            <SvgUri
+              height="50%"
+              width="50%"
+              style={styles.imatge_etiqueta}
+              uri={require("../assets/img/etiquetes/vegetarian.svg")}
+            />
+          </View>
+        );
+
+      case "Vegetarian":
+        return (
+          <View>
+            <Text>{label}</Text>
+            <SvgUri
+              height="50%"
+              width="50%"
+              style={styles.imatge_etiqueta}
+              uri={require("../assets/img/etiquetes/vegetarian.svg")}
+            />
+          </View>
+        );
+
+      default:
+        return (
+          <View>
+            <View style={pageStyles.fila}>
+              <Text style={styles.boleta}>{"\u2B24"}</Text>
+              <Text style={styles.text_etiqueta}>{label}</Text>
+            </View>
+          </View>
+        );
+    }
+  });
+
+  return res;
 };
 
 const DietView = ({ label }) => {
-  let dieta = response.recipe.dietLabels;
+  console.log("in");
+  return (
+    <Image
+      style={styles.imatge_etiqueta}
+      source={require("../assets/img/etiquetes/no-alcohol.svg")}
+    />
+  ); /* 
   switch (label) {
     case "Alcohol-Free":
       return (
         <Image
-          style={pageStyles.imatge_etiqueta}
+          style={styles.imatge_etiqueta}
           source={require("../assets/img/etiquetes/no-alcohol.svg")}
         />
       );
@@ -195,7 +245,7 @@ const DietView = ({ label }) => {
     case "Low-Carb":
       return (
         <Image
-          style={pageStyles.imatge_etiqueta}
+          style={styles.imatge_etiqueta}
           source={require("../assets/img/etiquetes/low-carb.svg")}
         />
       );
@@ -203,7 +253,7 @@ const DietView = ({ label }) => {
     case "High-Protein":
       return (
         <Image
-          style={pageStyles.imatge_etiqueta}
+          style={styles.imatge_etiqueta}
           source={require("../assets/img/etiquetes/high-protein.svg")}
         />
       );
@@ -211,7 +261,7 @@ const DietView = ({ label }) => {
     case "High-Fiber":
       return (
         <Image
-          style={pageStyles.imatge_etiqueta}
+          style={styles.imatge_etiqueta}
           source={require("../assets/img/etiquetes/high-fiber.svg")}
         />
       );
@@ -220,12 +270,12 @@ const DietView = ({ label }) => {
       return (
         <View>
           <View style={pageStyles.fila}>
-            <Text style={pageStyles.boleta}>{"\u2B24"}</Text>
-            <Text style={pageStyles.text_etiqueta}>{label}</Text>
+            <Text style={styles.boleta}>{"\u2B24"}</Text>
+            <Text style={styles.text_etiqueta}>{label}</Text>
           </View>
         </View>
       );
-  }
+  } */
 };
 
 const initialLayout = { width: Dimensions.get("window").width };
@@ -245,7 +295,7 @@ const Recipe = () => {
   const renderLabel = ({ route }) => {
     return (
       <View>
-        <Text style={pageStyles.tabText}>{route.title}</Text>
+        <Text style={styles.tabText}>{route.title}</Text>
       </View>
     );
   };
@@ -264,15 +314,15 @@ const Recipe = () => {
               {...props}
               getLabelText={({ route: { title } }) => title}
               indicatorStyle={pageStyles.indicator}
-              style={pageStyles.tab}
+              style={styles.tab}
               renderLabel={renderLabel}
             />
           )}
         />
       </View>
 
-      <TouchableHighlight style={pageStyles.botoView}>
-        <Text style={pageStyles.boto_recepta}>SELECCIONAR RECETA</Text>
+      <TouchableHighlight style={styles.botoView}>
+        <Text style={styles.boto_recepta}>SELECCIONAR RECETA</Text>
       </TouchableHighlight>
     </View>
   );
@@ -283,3 +333,64 @@ Recipe.Icon = ({ color, size }) => (
 );
 
 export default Recipe;
+
+const styles = StyleSheet.create({
+  recipeImg: {
+    width: Dimensions.get("window").width,
+  },
+  imatge_etiqueta: {
+    borderRadius: 30,
+    borderColor: "#9ccc65",
+    borderWidth: 1,
+    marginRight: 20,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  boleta: {
+    textAlign: "left",
+    textAlignVertical: "center",
+    margin: 5,
+    color: "grey",
+    fontSize: 8,
+    width: "auto",
+    paddingHorizontal: 3,
+    paddingVertical: 10,
+  },
+  text_etiqueta: {
+    textAlign: "left",
+    textAlignVertical: "center",
+    margin: 5,
+    color: "grey",
+    fontSize: 14,
+    width: "auto",
+    padding: 5,
+  },
+  tab: {
+    backgroundColor: "#fafafa",
+  },
+  tabText: {
+    color: "grey",
+  },
+  botoView: {
+    backgroundColor: "#fff",
+  },
+
+  boto_recepta: {
+    textAlign: "center",
+    textAlignVertical: "center",
+    borderWidth: 2,
+    borderRadius: 5,
+    marginHorizontal: 10,
+    marginVertical: 20,
+    color: "#9ccc65",
+    borderColor: "#9ccc65",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+  iconsView: {
+    textAlign: "center",
+    textAlignVertical: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});

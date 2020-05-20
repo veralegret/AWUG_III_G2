@@ -33,8 +33,9 @@ const DayScreen = ({ route }) => {
   const pm = useContext(PM_Context);
 
   //Rebuda dels parametres per navegació
-  let dia = route.params.dia ? route.params.dia : null;
-  let semana = route.params.semana ? route.params.semana : null;
+
+  let dia = route.params != undefined ? route.params.dia : null;
+  let semana = route.params != undefined ? route.params.semana : null;
 
   let title = null;
   let day = null;
