@@ -83,21 +83,17 @@ const LeftRoute = () => {
           </Text>
         </TouchableHighlight>
 
-        <View style={pageStyles.fila}>
+        <Text style={styles.highlightText}>Health Labels</Text>
+        <View style={styles.highlight}></View>
+        <View style={styles.fila}>
           <HealthView labels={response.recipe.healthLabels} />
-          {/* <FlatList
-            data={response.recipe.healthLabels}
-            renderItem={({ item }) => <HealthView label={item} />}
-            keyExtractor={(item) => item}
-          /> */}
         </View>
 
-        <View style={pageStyles.fila}>
-          {/* <FlatList
-            data={response.recipe.dietLabels}
-            renderItem={({ item }) => <DietView label={item} />}
-            keyExtractor={(item) => item}
-          /> */}
+        <Text style={styles.highlightText}>Diet Labels</Text>
+        <View style={styles.highlight}></View>
+
+        <View style={styles.fila}>
+          <DietView labels={response.recipe.dietLabels} />
         </View>
       </ScrollView>
     );
@@ -105,19 +101,16 @@ const LeftRoute = () => {
 };
 
 const HealthView = ({ labels }) => {
-  console.log("health");
   const res = labels.map((label) => {
     switch (label) {
       case "Peanut-Free":
         return (
-          <View>
-            <Text>{label}</Text>
-            <SvgUri
-              height="50%"
-              width="50%"
-              style={styles.imatge_etiqueta}
-              uri={require("../assets/img/etiquetes/peanut-free.svg")}
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/peanut-free.png")}
             />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
         );
 
@@ -128,94 +121,71 @@ const HealthView = ({ labels }) => {
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/sugar-conscious.png")}
             />
-            <Text>{label}</Text>
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
         );
 
       case "Tree-Nut-Free":
         return (
-          <View>
-            <Text>{label}</Text>
-            <SvgUri
-              height="50%"
-              width="50%"
-              style={styles.imatge_etiqueta}
-              uri={require("../assets/img/etiquetes/tree-nut-free.svg")}
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/tree-nut-free.png")}
             />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
         );
 
       case "Gluten-Free":
         return (
-          <View>
-            <Text>{label}</Text>
-            <SvgUri
-              height="50%"
-              width="50%"
-              style={styles.imatge_etiqueta}
-              uri={require("../assets/img/etiquetes/gluten-free.svg")}
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/gluten-free.png")}
             />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
         );
 
       case "Egg-Free":
         return (
-          <View>
-            <Text>{label}</Text>
-            <SvgUri
-              height="50%"
-              width="50%"
-              style={styles.imatge_etiqueta}
-              uri={require("../assets/img/etiquetes/egg-free.svg")}
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/egg-free.png")}
             />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
         );
 
       case "Vegan":
         return (
-          <View>
-            <Text>{label}</Text>
-            <SvgUri
-              height="50%"
-              width="50%"
-              style={styles.imatge_etiqueta}
-              uri={require("../assets/img/etiquetes/vegan.svg")}
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/vegan.png")}
             />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
         );
 
       case "Vegetarian":
         return (
-          <View>
-            <Text>{label}</Text>
-            <SvgUri
-              height="50%"
-              width="50%"
-              style={styles.imatge_etiqueta}
-              uri={require("../assets/img/etiquetes/vegetarian.svg")}
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/vegetarian.png")}
             />
-          </View>
-        );
-
-      case "Vegetarian":
-        return (
-          <View>
-            <Text>{label}</Text>
-            <SvgUri
-              height="50%"
-              width="50%"
-              style={styles.imatge_etiqueta}
-              uri={require("../assets/img/etiquetes/vegetarian.svg")}
-            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
         );
 
       default:
         return (
-          <View>
+          <View style={styles.iconsView}>
             <View style={pageStyles.fila}>
               <Text style={styles.boleta}>{"\u2B24"}</Text>
-              <Text style={styles.text_etiqueta}>{label}</Text>
+              <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
             </View>
           </View>
         );
@@ -225,57 +195,67 @@ const HealthView = ({ labels }) => {
   return res;
 };
 
-const DietView = ({ label }) => {
-  console.log("in");
-  return (
-    <Image
-      style={styles.imatge_etiqueta}
-      source={require("../assets/img/etiquetes/no-alcohol.svg")}
-    />
-  ); /* 
-  switch (label) {
-    case "Alcohol-Free":
-      return (
-        <Image
-          style={styles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/no-alcohol.svg")}
-        />
-      );
-
-    case "Low-Carb":
-      return (
-        <Image
-          style={styles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/low-carb.svg")}
-        />
-      );
-
-    case "High-Protein":
-      return (
-        <Image
-          style={styles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/high-protein.svg")}
-        />
-      );
-
-    case "High-Fiber":
-      return (
-        <Image
-          style={styles.imatge_etiqueta}
-          source={require("../assets/img/etiquetes/high-fiber.svg")}
-        />
-      );
-
-    default:
-      return (
-        <View>
-          <View style={pageStyles.fila}>
-            <Text style={styles.boleta}>{"\u2B24"}</Text>
-            <Text style={styles.text_etiqueta}>{label}</Text>
+const DietView = ({ labels }) => {
+  const res = labels.map((label) => {
+    switch (label) {
+      case "Alcohol-Free":
+        return (
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/no-alcohol.png")}
+            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
-        </View>
-      );
-  } */
+        );
+
+      case "Low-Carb":
+        return (
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/low-carb.png")}
+            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+          </View>
+        );
+
+      case "High-Protein":
+        return (
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/high-protein.png")}
+            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+          </View>
+        );
+
+      case "High-Fiber":
+        return (
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/high-fiber.png")}
+            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+          </View>
+        );
+
+      default:
+        return (
+          <View>
+            <View style={pageStyles.fila}>
+              <Text style={styles.boleta}>{"\u2B24"}</Text>
+              <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+            </View>
+          </View>
+        );
+    }
+  });
+  return res;
+  /*
+   */
 };
 
 const initialLayout = { width: Dimensions.get("window").width };
@@ -335,16 +315,36 @@ Recipe.Icon = ({ color, size }) => (
 export default Recipe;
 
 const styles = StyleSheet.create({
+  fila: {
+    flexGrow: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   recipeImg: {
     width: Dimensions.get("window").width,
   },
+  highlightText: {
+    marginTop: 30,
+    textAlign: "center",
+    color: "grey",
+  },
+  highlight: {
+    height: 2,
+    marginHorizontal: 100,
+    marginVertical: 10,
+    backgroundColor: "#ddd",
+  },
   imatge_etiqueta: {
-    borderRadius: 30,
-    borderColor: "#9ccc65",
-    borderWidth: 1,
-    marginRight: 20,
     justifyContent: "center",
     alignItems: "center",
+  },
+  text_etiqueta: {
+    textAlign: "center",
+    color: "grey",
+    fontSize: 9,
+    marginVertical: 5,
+    marginHorizontal: 10,
   },
   boleta: {
     textAlign: "left",
@@ -355,15 +355,6 @@ const styles = StyleSheet.create({
     width: "auto",
     paddingHorizontal: 3,
     paddingVertical: 10,
-  },
-  text_etiqueta: {
-    textAlign: "left",
-    textAlignVertical: "center",
-    margin: 5,
-    color: "grey",
-    fontSize: 14,
-    width: "auto",
-    padding: 5,
   },
   tab: {
     backgroundColor: "#fafafa",
