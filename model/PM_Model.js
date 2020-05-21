@@ -5,13 +5,60 @@ class PM_Model {
   @observable week = [
     {
       day: 1,
-      meals: { desayuno: null, comida: null, merienda: null, cena: null },
+      meals: {
+        desayuno: null,
+        comida: {
+          label: "Chicken Paprikash 1",
+          image:
+            "https://www.edamam.com/web-img/e12/e12b8c5581226d7639168f41d126f2ff.jpg",
+          source: "No Recipes 1",
+          url: "http://norecipes.com/recipe/chicken-paprikash/",
+          yield: 4.0,
+          dietLabels: ["Low-Carb"],
+          healthLabels: ["Sugar-Conscious", "Peanut-Free", "Tree-Nut-Free"],
+          ingredientLines: [
+            "640 grams chicken - drumsticks and thighs ( 3 whole chicken legs cut apart)",
+            "1/2 teaspoon salt",
+            "1/4 teaspoon black pepper",
+            "1 tablespoon butter – cultured unsalted (or olive oil)",
+            "240 grams onion sliced thin (1 large onion)",
+            "70 grams Anaheim pepper chopped (1 large pepper)",
+            "25 grams paprika (about 1/4 cup)",
+            "1 cup chicken stock",
+            "1/2 cup sour cream",
+            "1 tablespoon flour – all-purpose",
+          ],
+        },
+        merienda: null,
+        cena: null,
+      },
     },
     {
       day: 2,
       meals: {
         desayuno: null,
-        comida: { recipe: "hi" },
+        comida: {
+          label: "Chicken Paprikash 2",
+          image:
+            "https://www.edamam.com/web-img/e12/e12b8c5581226d7639168f41d126f2ff.jpg",
+          source: "No Recipes 2",
+          url: "http://norecipes.com/recipe/chicken-paprikash/",
+          yield: 4.0,
+          dietLabels: ["Low-Carb"],
+          healthLabels: ["Sugar-Conscious", "Peanut-Free", "Tree-Nut-Free"],
+          ingredientLines: [
+            "640 grams chicken - drumsticks and thighs ( 3 whole chicken legs cut apart)",
+            "1/2 teaspoon salt",
+            "1/4 teaspoon black pepper",
+            "1 tablespoon butter – cultured unsalted (or olive oil)",
+            "240 grams onion sliced thin (1 large onion)",
+            "70 grams Anaheim pepper chopped (1 large pepper)",
+            "25 grams paprika (about 1/4 cup)",
+            "1 cup chicken stock",
+            "1/2 cup sour cream",
+            "1 tablespoon flour – all-purpose",
+          ],
+        },
         merienda: null,
         cena: null,
       },
@@ -47,22 +94,6 @@ class PM_Model {
       meals: { desayuno: null, comida: null, merienda: null, cena: null },
     },
   ];
-
-  /* 
-  @observable week = null;
-
-  @action async loadWeek() {
-    for (var i = 1; i < 7; i++) {
-      this.week.push({
-        day: i,
-        meals: { desayuno: null, comida: null, merienda: null, cena: null },
-      });
-    }
-    this.week.push({
-      day: 0,
-      meals: { desayuno: null, comida: null, merienda: null, cena: null },
-    });
-  } */
 
   //'day' i 'meal' serien index, int
   //'recipe' seria un objecte json de una recepta concreta

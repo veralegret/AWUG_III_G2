@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Image } from "react-native";
 import { observer } from "mobx-react";
-
 const MealImage = observer(({ meal, state, style }) => {
   switch (meal) {
     case 0:

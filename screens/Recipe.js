@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect, createContext } from "react";
 import {
   Text,
   View,
@@ -9,44 +9,27 @@ import {
   Linking,
   ScrollView,
   StyleSheet,
-  ScrollViewComponent,
+  ActivityIndicator,
 } from "react-native";
 import { pageStyles } from "../styles";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
-import { SvgUri } from "react-native-svg";
 import Capcelera from "./components/Capcelera";
 import Ingredient from "./components/Ingredient";
 
-const response = {
-  recipe: {
-    label: "Chicken Paprikash",
-    image:
-      "https://www.edamam.com/web-img/e12/e12b8c5581226d7639168f41d126f2ff.jpg",
-    source: "No Recipes",
-    url: "http://norecipes.com/recipe/chicken-paprikash/",
-    yield: 4.0,
-    dietLabels: ["Low-Carb"],
-    healthLabels: ["Sugar-Conscious", "Peanut-Free", "Tree-Nut-Free"],
-    ingredientLines: [
-      "640 grams chicken - drumsticks and thighs ( 3 whole chicken legs cut apart)",
-      "1/2 teaspoon salt",
-      "1/4 teaspoon black pepper",
-      "1 tablespoon butter – cultured unsalted (or olive oil)",
-      "240 grams onion sliced thin (1 large onion)",
-      "70 grams Anaheim pepper chopped (1 large pepper)",
-      "25 grams paprika (about 1/4 cup)",
-      "1 cup chicken stock",
-      "1/2 cup sour cream",
-      "1 tablespoon flour – all-purpose",
-    ],
-  },
-};
+import { observer } from "mobx-react";
+
+import { PM_Context } from "../model/PM_Model";
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native-gesture-handler";
+
+export const RecipeContext = createContext({});
 
 const Separator = () => <View style={pageStyles.separator} />;
 
 const RightRoute = () => {
-  let ingr = response.recipe.ingredientLines;
+  const recipe = useContext(RecipeContext);
+  let ingr = recipe.ingredientLines;
   if (ingr == null) {
     return <ActivityIndicator size="large" color="#9ccc65" />;
   } else {
@@ -62,7 +45,8 @@ const RightRoute = () => {
 };
 
 const LeftRoute = () => {
-  let image = response.recipe.image;
+  const recipe = useContext(RecipeContext);
+  let image = recipe.image;
   if (image == null) {
     return <ActivityIndicator size="large" color="#9ccc65" />;
   } else {
@@ -75,25 +59,24 @@ const LeftRoute = () => {
 
         <TouchableHighlight
           onPress={() => {
-            Linking.openURL(response.recipe.url);
+            Linking.openURL(recipe.url);
           }}
         >
-          <Text style={pageStyles.boto3}>
-            Pasos de la receta en "{response.recipe.source}"
+          <Text style={styles.stepsBtn}>
+            Pasos de la receta en "{recipe.source}"
           </Text>
         </TouchableHighlight>
 
         <Text style={styles.highlightText}>Health Labels</Text>
         <View style={styles.highlight}></View>
         <View style={styles.fila}>
-          <HealthView labels={response.recipe.healthLabels} />
+          <HealthView labels={recipe.healthLabels} />
         </View>
 
         <Text style={styles.highlightText}>Diet Labels</Text>
         <View style={styles.highlight}></View>
-
         <View style={styles.fila}>
-          <DietView labels={response.recipe.dietLabels} />
+          <DietView labels={recipe.dietLabels} />
         </View>
       </ScrollView>
     );
@@ -105,7 +88,7 @@ const HealthView = ({ labels }) => {
     switch (label) {
       case "Peanut-Free":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/peanut-free.png")}
@@ -116,7 +99,7 @@ const HealthView = ({ labels }) => {
 
       case "Sugar-Conscious":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/sugar-conscious.png")}
@@ -127,7 +110,7 @@ const HealthView = ({ labels }) => {
 
       case "Tree-Nut-Free":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/tree-nut-free.png")}
@@ -138,7 +121,7 @@ const HealthView = ({ labels }) => {
 
       case "Gluten-Free":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/gluten-free.png")}
@@ -149,7 +132,7 @@ const HealthView = ({ labels }) => {
 
       case "Egg-Free":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/egg-free.png")}
@@ -160,7 +143,7 @@ const HealthView = ({ labels }) => {
 
       case "Vegan":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/vegan.png")}
@@ -171,7 +154,7 @@ const HealthView = ({ labels }) => {
 
       case "Vegetarian":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/vegetarian.png")}
@@ -182,7 +165,7 @@ const HealthView = ({ labels }) => {
 
       default:
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <View style={pageStyles.fila}>
               <Text style={styles.boleta}>{"\u2B24"}</Text>
               <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
@@ -200,7 +183,7 @@ const DietView = ({ labels }) => {
     switch (label) {
       case "Alcohol-Free":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/no-alcohol.png")}
@@ -211,7 +194,7 @@ const DietView = ({ labels }) => {
 
       case "Low-Carb":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/low-carb.png")}
@@ -222,7 +205,7 @@ const DietView = ({ labels }) => {
 
       case "High-Protein":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/high-protein.png")}
@@ -233,7 +216,7 @@ const DietView = ({ labels }) => {
 
       case "High-Fiber":
         return (
-          <View style={styles.iconsView}>
+          <View key={label} style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/high-fiber.png")}
@@ -244,7 +227,7 @@ const DietView = ({ labels }) => {
 
       default:
         return (
-          <View>
+          <View key={label}>
             <View style={pageStyles.fila}>
               <Text style={styles.boleta}>{"\u2B24"}</Text>
               <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
@@ -260,7 +243,42 @@ const DietView = ({ labels }) => {
 
 const initialLayout = { width: Dimensions.get("window").width };
 
-const Recipe = () => {
+const Recipe = ({ route }) => {
+  const [recipe, setRecipe] = useState({});
+
+  //OPCIÓ 1 : ve desde DayScreen, per tant la recepta està al model
+  const pm = useContext(PM_Context);
+
+  useEffect(() => {
+    let day = route.params != undefined ? route.params.dia : null;
+    let meal = route.params != undefined ? route.params.meal : null;
+
+    let mealDay;
+    if (day == 0) {
+      mealDay = day + 6;
+    } else {
+      mealDay = day - 1;
+    }
+    let response;
+    switch (meal) {
+      case 0:
+        response = pm.week[mealDay].meals.deayuno;
+        break;
+      case 1:
+        response = pm.week[mealDay].meals.comida;
+        break;
+      case 2:
+        response = pm.week[mealDay].meals.merienda;
+        break;
+      case 3:
+        response = pm.week[mealDay].meals.cena;
+        break;
+    }
+    setRecipe(response);
+  }, [route.params]);
+
+  //FINAL OPCIÓ 1
+
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: "left", title: "Receta" },
@@ -279,32 +297,39 @@ const Recipe = () => {
       </View>
     );
   };
+  const SelectRecipe = () => {
+    const Select = () => {};
+    return (
+      <TouchableOpacity style={styles.botoView} onPress={() => {}}>
+        <Text style={styles.boto_recepta}>SELECCIONAR RECETA</Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
-    <View style={pageStyles.screen}>
-      <Capcelera title={response.recipe.label}></Capcelera>
-      <View style={pageStyles.cos}>
-        <TabView
-          navigationState={{ index, routes }}
-          renderScene={renderScene}
-          onIndexChange={setIndex}
-          initialLayout={initialLayout}
-          renderTabBar={(props) => (
-            <TabBar
-              {...props}
-              getLabelText={({ route: { title } }) => title}
-              indicatorStyle={pageStyles.indicator}
-              style={styles.tab}
-              renderLabel={renderLabel}
-            />
-          )}
-        />
+    <RecipeContext.Provider value={recipe}>
+      <View style={pageStyles.screen}>
+        <Capcelera title={recipe.label}></Capcelera>
+        <View style={pageStyles.cos}>
+          <TabView
+            navigationState={{ index, routes }}
+            renderScene={renderScene}
+            onIndexChange={setIndex}
+            initialLayout={initialLayout}
+            renderTabBar={(props) => (
+              <TabBar
+                {...props}
+                getLabelText={({ route: { title } }) => title}
+                indicatorStyle={pageStyles.indicator}
+                style={styles.tab}
+                renderLabel={renderLabel}
+              />
+            )}
+          />
+        </View>
+        <SelectRecipe />
       </View>
-
-      <TouchableHighlight style={styles.botoView}>
-        <Text style={styles.boto_recepta}>SELECCIONAR RECETA</Text>
-      </TouchableHighlight>
-    </View>
+    </RecipeContext.Provider>
   );
 };
 
@@ -312,9 +337,20 @@ Recipe.Icon = ({ color, size }) => (
   <MaterialCommunityIcons name="food-variant" size={size} color={color} />
 );
 
-export default Recipe;
+export default observer(Recipe);
 
 const styles = StyleSheet.create({
+  stepsBtn: {
+    textAlign: "center",
+    textAlignVertical: "center",
+    borderWidth: 2,
+    borderRadius: 5,
+    marginVertical: 5,
+    color: "grey",
+    borderColor: "grey",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
   fila: {
     flexGrow: 1,
     flexDirection: "row",
@@ -323,11 +359,13 @@ const styles = StyleSheet.create({
   },
   recipeImg: {
     width: Dimensions.get("window").width,
+    marginVertical: 20,
   },
   highlightText: {
-    marginTop: 30,
     textAlign: "center",
     color: "grey",
+
+    marginTop: 30,
   },
   highlight: {
     height: 2,
