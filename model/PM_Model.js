@@ -2,6 +2,15 @@ import { observable, action } from "mobx";
 import React, { createContext } from "react";
 
 class PM_Model {
+  @observable dayOfWeek = [
+    "Domingo",
+    "Lunes",
+    "Martes",
+    "Miércoles",
+    "Jueves",
+    "Viernes",
+    "Sábado",
+  ];
   @observable week = [
     {
       day: 1,

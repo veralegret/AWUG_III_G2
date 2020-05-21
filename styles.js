@@ -258,10 +258,7 @@ export const pageStyles = StyleSheet.create({
   },
 
   separator: {
-    height: 1,
-    marginLeft: 65,
-    marginRight: 25,
-    backgroundColor: GRIS_FLUIX,
+    height: 3,
   },
 
   indicator: {

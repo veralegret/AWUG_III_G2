@@ -28,12 +28,6 @@ const MainPage = () => {
       }}
     >
       <Tab.Screen
-        name="Day"
-        component={DayScreen}
-        options={{ tabBarIcon: DayScreen.Icon }}
-      ></Tab.Screen>
-
-      <Tab.Screen
         name="Week"
         component={WeekScreen}
         options={{ tabBarIcon: WeekScreen.Icon }}
@@ -56,6 +50,7 @@ export default function App() {
           <Stack.Screen name="Prosciutto & Melone" component={MainPage} />
           <Stack.Screen name="Recipe" component={Recipe} />
           <Stack.Screen name="Search" component={Search} />
+          <Stack.Screen name="Day" component={DayScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </PM_Provider>

@@ -16,16 +16,6 @@ const screenWidth = Dimensions.get("screen").width;
 const screenHeigth = Dimensions.get("screen").height;
 const width = Math.floor(screenWidth / numCol);
 
-let weekDays = [
-  "Domingo",
-  "Lunes",
-  "Martes",
-  "Miércoles",
-  "Jueves",
-  "Viernes",
-  "Sábado",
-];
-
 const DayScreen = ({ route }) => {
   const navigation = useNavigation();
   const pm = useContext(PM_Context);
@@ -34,19 +24,9 @@ const DayScreen = ({ route }) => {
   const [title, setTitle] = useState({});
 
   useEffect(() => {
-    let dia = route.params != undefined ? route.params.dia : null;
-    let semana = route.params != undefined ? route.params.semana : null;
+    let dia = route.params != undefined ? route.params.dia : false;
 
-    //Si venim per navegació o per tab inferior
-    if (dia != null && semana != null) {
-      setTitle(weekDays[semana] + ", día " + dia);
-      let weekDay = semana;
-      if (weekDay == 0) {
-        setDay(pm.week[weekDay + 6]);
-      } else {
-        setDay(pm.week[weekDay - 1]);
-      }
-    } else {
+    if (dia.day == new Date().getDay()) {
       setTitle("Hoy");
       let weekDay = new Date().getDay();
       if (weekDay == 0) {
@@ -54,8 +34,16 @@ const DayScreen = ({ route }) => {
       } else {
         setDay(pm.week[weekDay - 1]);
       }
+    } else {
+      setTitle(pm.dayOfWeek[dia.day] + ", día " + route.params.num);
+      let weekDay = dia.day;
+      if (weekDay == 0) {
+        setDay(pm.week[weekDay + 6]);
+      } else {
+        setDay(pm.week[weekDay - 1]);
+      }
     }
-  }, [route.params]);
+  }, [route.params.dia]);
 
   const GoToMeal = ({ meal, state }) => {
     if (state != null) {
@@ -69,7 +57,7 @@ const DayScreen = ({ route }) => {
   return (
     day && (
       <View style={pageStyles.screen}>
-        <Capcelera title={title}></Capcelera>
+        <Capcelera title={title} back={true}></Capcelera>
         <View style={pageStyles.cos}>
           <View style={styles.fila}>
             <TouchableOpacity

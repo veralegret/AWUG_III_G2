@@ -1,25 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import MealImage from "./MealImage";
 import { observer } from "mobx-react";
-import { useNavigation } from "@react-navigation/native";
 
-var weekDays = [
-  "Domingo",
-  "Lunes",
-  "Martes",
-  "Miércoles",
-  "Jueves",
-  "Viernes",
-  "Sábado",
-];
+import { PM_Context } from "../../model/PM_Model";
+import { useNavigation } from "@react-navigation/native";
 
 var today = new Date().getDay();
 var num = new Date().getDate();
 
-const DayofWeek = observer(({ day }) => {
+const DayofWeek = ({ day }) => {
   const navigation = useNavigation();
+  const pm = useContext(PM_Context);
 
   var res = 0;
   if (day.day == 0) {
@@ -28,37 +21,65 @@ const DayofWeek = observer(({ day }) => {
     res = today - day.day;
   }
   var dia = num - res;
-  var diaSemana = weekDays[day.day];
+  var diaSemana = pm.dayOfWeek[day.day];
 
   const GoToDay = () => {
-    navigation.navigate("Day", { dia: dia, semana: day.day });
+    navigation.navigate("Day", { num: dia, dia: day });
   };
-
-  return (
-    <TouchableOpacity
-      activeOpacity={0.6}
-      underlayColor="#DDDDDD"
-      onPress={GoToDay}
-    >
-      <View style={styles.weekDay}>
-        <View style={styles.dayInfo}>
-          <Text style={styles.number}>{dia}</Text>
-          <Text>{diaSemana}</Text>
+  if (day.day == today) {
+    return (
+      <TouchableOpacity
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD"
+        onPress={GoToDay}
+        style={styles.today}
+      >
+        <View style={styles.weekDay}>
+          <View style={styles.dayInfo}>
+            <Text style={styles.number}>{dia}</Text>
+            <Text>Today</Text>
+          </View>
+          <View style={styles.mealRow}>
+            <MealImage meal={0} state={day.meals.desayuno} style={styles.img} />
+            <MealImage meal={1} state={day.meals.comida} style={styles.img} />
+            <MealImage meal={2} state={day.meals.merienda} style={styles.img} />
+            <MealImage meal={3} state={day.meals.cena} style={styles.img} />
+          </View>
         </View>
-        <View style={styles.mealRow}>
-          <MealImage meal={0} state={day.meals.desayuno} style={styles.img} />
-          <MealImage meal={1} state={day.meals.comida} style={styles.img} />
-          <MealImage meal={2} state={day.meals.merienda} style={styles.img} />
-          <MealImage meal={3} state={day.meals.cena} style={styles.img} />
+      </TouchableOpacity>
+    );
+  } else {
+    return (
+      <TouchableOpacity
+        activeOpacity={0.6}
+        underlayColor="#DDDDDD"
+        onPress={GoToDay}
+      >
+        <View style={styles.weekDay}>
+          <View style={styles.dayInfo}>
+            <Text style={styles.number}>{dia}</Text>
+            <Text>{diaSemana}</Text>
+          </View>
+          <View style={styles.mealRow}>
+            <MealImage meal={0} state={day.meals.desayuno} style={styles.img} />
+            <MealImage meal={1} state={day.meals.comida} style={styles.img} />
+            <MealImage meal={2} state={day.meals.merienda} style={styles.img} />
+            <MealImage meal={3} state={day.meals.cena} style={styles.img} />
+          </View>
         </View>
-      </View>
-    </TouchableOpacity>
-  );
-});
+      </TouchableOpacity>
+    );
+  }
+};
 
-export default DayofWeek;
+export default observer(DayofWeek);
 
 const styles = StyleSheet.create({
+  today: {
+    borderColor: "#9ccc65",
+    borderWidth: 1,
+    borderRadius: 10,
+  },
   weekDay: {
     flexDirection: "row",
     height: Dimensions.get("screen").height / 10,
@@ -80,7 +101,7 @@ const styles = StyleSheet.create({
   img: {
     width: Dimensions.get("screen").width / 6,
     height: Dimensions.get("screen").width / 6,
-    margin: 5,
+    marginHorizontal: 4,
     borderRadius: 10,
   },
 });
