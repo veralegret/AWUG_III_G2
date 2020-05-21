@@ -270,8 +270,6 @@ const DietView = ({ labels }) => {
     }
   });
   return res;
-  /*
-   */
 };
 
 const initialLayout = { width: Dimensions.get("window").width };
@@ -283,31 +281,35 @@ const Recipe = ({ route }) => {
   const pm = useContext(PM_Context);
 
   useEffect(() => {
-    let day = route.params != undefined ? route.params.dia : null;
-    let meal = route.params != undefined ? route.params.meal : null;
-
-    let mealDay;
-    if (day == 0) {
-      mealDay = day + 6;
+    if (route.params.recipe) {
+      // Vinc des del Search
     } else {
-      mealDay = day - 1;
+      let day = route.params != undefined ? route.params.dia : null;
+      let meal = route.params != undefined ? route.params.meal : null;
+
+      let mealDay;
+      if (day == 0) {
+        mealDay = day + 6;
+      } else {
+        mealDay = day - 1;
+      }
+      let response;
+      switch (meal) {
+        case 0:
+          response = pm.week[mealDay].meals.deayuno;
+          break;
+        case 1:
+          response = pm.week[mealDay].meals.comida;
+          break;
+        case 2:
+          response = pm.week[mealDay].meals.merienda;
+          break;
+        case 3:
+          response = pm.week[mealDay].meals.cena;
+          break;
+      }
+      setRecipe(response);
     }
-    let response;
-    switch (meal) {
-      case 0:
-        response = pm.week[mealDay].meals.deayuno;
-        break;
-      case 1:
-        response = pm.week[mealDay].meals.comida;
-        break;
-      case 2:
-        response = pm.week[mealDay].meals.merienda;
-        break;
-      case 3:
-        response = pm.week[mealDay].meals.cena;
-        break;
-    }
-    setRecipe(response);
   }, [route.params]);
 
   //FINAL OPCIÓ 1

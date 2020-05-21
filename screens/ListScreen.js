@@ -11,7 +11,14 @@ import { pageStyles } from "../styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import Capcelera from "./components/Capcelera";
 
+import { observer } from "mobx-react";
+import { PM_Context } from "../model/PM_Model";
+
 const ListScreen = () => {
+  const pm = useContext(PM_Context);
+
+  //pm.week.map((dia)=>{})
+
   const [elements, setElements] = useState([
     { nom: "Farina", estat: false, id: "1" },
     { nom: "Tomàquet", estat: false, id: "2" },
@@ -100,4 +107,4 @@ ListScreen.Icon = ({ color, size }) => (
   <MaterialIcons name="format-list-bulleted" size={size} color={color} />
 );
 
-export default ListScreen;
+export default observer(ListScreen);

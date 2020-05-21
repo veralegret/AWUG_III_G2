@@ -66,17 +66,17 @@ class PM_Model {
     {
       day: 3,
       meals: {
-        desayuno: {},
+        desayuno: null,
         comida: null,
-        merienda: { recipe: "hi" },
+        merienda: null,
         cena: null,
       },
     },
     {
       day: 4,
       meals: {
-        desayuno: { recipe: "hi" },
-        comida: { recipe: "hi" },
+        desayuno: null,
+        comida: null,
         merienda: null,
         cena: null,
       },
@@ -130,6 +130,7 @@ class PM_Model {
   }
 
   //Acció d'esborrar la llista de la compra
+  //Fer que s'executi els diumeges a les 23:55
   @action deleteWeekMeals() {
     this.week.forEach((day) => {
       day.meals.desayuno = null;

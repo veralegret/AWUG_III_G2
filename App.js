@@ -1,6 +1,7 @@
 import React from "react";
 import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import WeekScreen from "./screens/WeekScreen.js";
 import DayScreen from "./screens/DayScreen.js";
@@ -14,13 +15,19 @@ import "mobx-react/batchingForReactNative";
 //Provider dels models, perque es pugui accedir al observable "week" des de totes les pagines
 import { PM_Provider } from "./model/PM_Model.js";
 
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <PM_Provider>
+      {/* <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Recipe" component={Recipe} />
+          <Stack.Screen name="Search" component={Search} />
+        </Stack.Navigator>
+      </NavigationContainer> */}
       <NavigationContainer>
-        {/*Per poder accedir a les pantalles*/}
         <Tab.Navigator
           initialRouteName="Week"
           screenOptions={{}}
@@ -51,6 +58,7 @@ export default function App() {
             component={Search}
             options={{ tabBarIcon: Search.Icon }}
           ></Tab.Screen>
+
           <Tab.Screen
             name="List"
             component={ListScreen}
