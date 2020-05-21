@@ -169,12 +169,45 @@ const HealthView = ({ labels }) => {
           </View>
         );
 
-      case "Vegetarian":
+      case "Shellfish-Free":
         return (
           <View style={styles.iconsView}>
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
-              source={require("../assets/img/etiquetes/vegetarian.png")}
+              source={require("../assets/img/etiquetes/shellfish.png")}
+            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+          </View>
+        );
+
+      case "No-oil-added":
+        return (
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/no-oil-added.png")}
+            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+          </View>
+        );
+
+      case "Fish-free":
+        return (
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/fish-free.png")}
+            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+          </View>
+        );
+
+      case "Read-Meat-Free":
+        return (
+          <View style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/read-meat-free.png")}
             />
             <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
