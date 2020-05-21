@@ -3,6 +3,7 @@ import {
   Text,
   View,
   Dimensions,
+  Button,
   TouchableHighlight,
   FlatList,
   Image,
@@ -20,7 +21,6 @@ import Ingredient from "./components/Ingredient";
 import { observer } from "mobx-react";
 
 import { PM_Context } from "../model/PM_Model";
-import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const RecipeContext = createContext({});
@@ -344,7 +344,8 @@ const Recipe = ({ route }) => {
   return (
     <RecipeContext.Provider value={recipe}>
       <View style={pageStyles.screen}>
-        <Capcelera title={recipe.label}></Capcelera>
+        <Capcelera title={recipe.label} back={true}></Capcelera>
+
         <View style={pageStyles.cos}>
           <TabView
             navigationState={{ index, routes }}

@@ -142,11 +142,17 @@ export const pageStyles = StyleSheet.create({
   },
   header: {
     flex: 1 / 9,
+    textAlignVertical: "center",
+    flexDirection: "row",
     backgroundColor: "#fff",
     textAlign: "left",
     paddingTop: 30,
     paddingHorizontal: 20,
     paddingBottom: 0,
+  },
+  backBtn: {
+    marginTop: 20,
+    marginRight: 15,
   },
   cos: {
     flex: 8 / 9,

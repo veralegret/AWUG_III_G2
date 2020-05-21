@@ -18,53 +18,45 @@ import { PM_Provider } from "./model/PM_Model.js";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+const MainPage = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="Week"
+      screenOptions={{}}
+      tabBarOptions={{
+        activeTintColor: "#9ccc65",
+      }}
+    >
+      <Tab.Screen
+        name="Day"
+        component={DayScreen}
+        options={{ tabBarIcon: DayScreen.Icon }}
+      ></Tab.Screen>
+
+      <Tab.Screen
+        name="Week"
+        component={WeekScreen}
+        options={{ tabBarIcon: WeekScreen.Icon }}
+      ></Tab.Screen>
+
+      <Tab.Screen
+        name="List"
+        component={ListScreen}
+        options={{ tabBarIcon: ListScreen.Icon }}
+      ></Tab.Screen>
+    </Tab.Navigator>
+  );
+};
+
 export default function App() {
   return (
     <PM_Provider>
-      {/* <NavigationContainer>
-        <Stack.Navigator>
+      <NavigationContainer>
+        <Stack.Navigator headerMode="none">
+          <Stack.Screen name="Prosciutto & Melone" component={MainPage} />
           <Stack.Screen name="Recipe" component={Recipe} />
           <Stack.Screen name="Search" component={Search} />
         </Stack.Navigator>
-      </NavigationContainer> */}
-      <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName="Week"
-          screenOptions={{}}
-          tabBarOptions={{
-            activeTintColor: "#9ccc65",
-          }}
-        >
-          <Tab.Screen
-            name="Recipe"
-            component={Recipe}
-            options={{ tabBarIcon: Recipe.Icon }}
-          ></Tab.Screen>
-
-          <Tab.Screen
-            name="Day"
-            component={DayScreen}
-            options={{ tabBarIcon: DayScreen.Icon }}
-          ></Tab.Screen>
-
-          <Tab.Screen
-            name="Week"
-            component={WeekScreen}
-            options={{ tabBarIcon: WeekScreen.Icon }}
-          ></Tab.Screen>
-
-          <Tab.Screen
-            name="Search"
-            component={Search}
-            options={{ tabBarIcon: Search.Icon }}
-          ></Tab.Screen>
-
-          <Tab.Screen
-            name="List"
-            component={ListScreen}
-            options={{ tabBarIcon: ListScreen.Icon }}
-          ></Tab.Screen>
-        </Tab.Navigator>
       </NavigationContainer>
     </PM_Provider>
   );
