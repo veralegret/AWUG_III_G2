@@ -84,9 +84,9 @@ const ListScreen = () => {
 
         <Modal visible={modalOpen} animationType="slide">
           <View style={pageStyles.modal}>
-            <Text style={pageStyles.h1}>CUIDADO!</Text>
+            <Text style={pageStyles.h1}>¡CUIDADO!</Text>
             <Text style={pageStyles.textModal}>
-              Al finalizar la compra perderá definitivamente la lista!
+              ¡Al finalizar la compra perderá definitivamente la lista!
             </Text>
             <View style={pageStyles.fila}>
               <TouchableOpacity onPress={() => setModalOpen(false)}>

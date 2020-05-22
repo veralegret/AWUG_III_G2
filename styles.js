@@ -221,6 +221,9 @@ export const pageStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 50,
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: VERD,
   },
 
   fila: {

@@ -396,6 +396,7 @@ const styles = StyleSheet.create({
   recipeImg: {
     width: Dimensions.get("window").width,
     marginVertical: 20,
+    borderRadius: 20,
   },
   highlightText: {
     textAlign: "center",
