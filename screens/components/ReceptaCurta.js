@@ -4,24 +4,43 @@ import { useNavigation } from "@react-navigation/native";
 
 const ReceptaCurta = ({
   label,
-  source,
   image,
+  source,
   healthLabels,
   url,
+  yield,
   ingredientLines,
 }) => {
+
   const navigation = useNavigation();
 
-  const GoToRecipe = ({ title, img, icons, steps, web, ingr }) => {
+  const GoToRecipe = ({ title, img, web, icons, font, puntuacio, ingr }) => {
+
     navigation.navigate("Recipe", {
-      title: title,
-      img: img,
-      icons: icons,
-      steps: steps,
-      web: web,
-      ingr: ingr,
+      dia: day,
+      meal: meal,
+      recipe: {
+        label: title,
+        image: img,
+        source: font,
+        healthLabels: icons,
+        url: web,
+        yield: puntuacio,
+        ingredientLines: [ingr],
+      },
     });
   };
+
+  /* const GoToRecipe = ({ recipe }) => {
+ 
+     let day = route.params != undefined ? route.params.dia : null;
+     let meal = route.params != undefined ? route.params.meal : null;
+ 
+     navigation.navigate("Recipe", { dia: day.day, meal: meal, recipe: {} });
+     //navigation.navigate("Search", { dia: day.day, meal: meal });
+   };*/
+
+  //onPress={() => GoToRecipe({ recipe: {...item}})}
 
   return (
     <TouchableOpacity
@@ -29,9 +48,10 @@ const ReceptaCurta = ({
         GoToRecipe({
           title: label,
           img: image,
-          icons: healthLabels,
-          steps: url,
           web: source,
+          icons: healthLabels,
+          font: url,
+          puntuacio: yield,
           ingr: ingredientLines,
         })
       }

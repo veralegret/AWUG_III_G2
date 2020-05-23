@@ -15,13 +15,16 @@ const Separator = () => <View style={styles.separator} />;
 
 //CONSULTA API
 //Es crida quan es vol pintar la llista
-const Search = () => {
+const Search = ({ route }) => {
   const [recipelist, setRecipelist] = useState(null);
   const [text, setText] = useState(null);
   const [textintroduit, setTextIntroduit] = useState(null);
   const updateSearch = () => {
     setText(textintroduit);
   };
+
+  let day = route.params != undefined ? route.params.dia : null;
+  let meal = route.params != undefined ? route.params.meal : null;
 
   let espera = false;
 
