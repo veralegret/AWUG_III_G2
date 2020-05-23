@@ -8,13 +8,15 @@ const ReceptaCurta = ({
   source,
   healthLabels,
   url,
-  yield,
+  dietLabels,
   ingredientLines,
+  day,
+  meal
 }) => {
-
+  j
   const navigation = useNavigation();
 
-  const GoToRecipe = ({ title, img, web, icons, font, puntuacio, ingr }) => {
+  const GoToRecipe = ({ title, img, web, icons, font, dieta, ingr }) => {
 
     navigation.navigate("Recipe", {
       dia: day,
@@ -23,24 +25,13 @@ const ReceptaCurta = ({
         label: title,
         image: img,
         source: font,
+        dietLabels: dieta,
         healthLabels: icons,
         url: web,
-        yield: puntuacio,
-        ingredientLines: [ingr],
+        ingredientLines: ingr,
       },
     });
   };
-
-  /* const GoToRecipe = ({ recipe }) => {
- 
-     let day = route.params != undefined ? route.params.dia : null;
-     let meal = route.params != undefined ? route.params.meal : null;
- 
-     navigation.navigate("Recipe", { dia: day.day, meal: meal, recipe: {} });
-     //navigation.navigate("Search", { dia: day.day, meal: meal });
-   };*/
-
-  //onPress={() => GoToRecipe({ recipe: {...item}})}
 
   return (
     <TouchableOpacity
@@ -51,7 +42,7 @@ const ReceptaCurta = ({
           web: source,
           icons: healthLabels,
           font: url,
-          puntuacio: yield,
+          dieta: dietLabels,
           ingr: ingredientLines,
         })
       }

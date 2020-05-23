@@ -283,6 +283,14 @@ const Recipe = ({ route }) => {
   useEffect(() => {
     if (route.params.recipe) {
       // Vinc des del Search
+      console.log("Holaaaa");
+      let day = route.params != undefined ? route.params.dia : null;
+      let meal = route.params != undefined ? route.params.meal : null;
+      let response = route.params != undefined ? route.params.recipe : null;
+
+      setRecipe(response);
+      console.log(response);
+
     } else {
       let day = route.params != undefined ? route.params.dia : null;
       let meal = route.params != undefined ? route.params.meal : null;
@@ -326,6 +334,7 @@ const Recipe = ({ route }) => {
   });
 
   const renderLabel = ({ route }) => {
+    console.log(recipe);
     return (
       <View>
         <Text style={styles.tabText}>{route.title}</Text>
@@ -333,9 +342,9 @@ const Recipe = ({ route }) => {
     );
   };
   const SelectRecipe = () => {
-    const Select = () => {};
+    const Select = () => { };
     return (
-      <TouchableOpacity style={styles.botoView} onPress={() => {}}>
+      <TouchableOpacity style={styles.botoView} onPress={() => { }}>
         <Text style={styles.boto_recepta}>SELECCIONAR RECETA</Text>
       </TouchableOpacity>
     );

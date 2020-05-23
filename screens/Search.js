@@ -5,13 +5,17 @@ import { FontAwesome } from "@expo/vector-icons";
 import Capcelera from "./components/Capcelera";
 import SearchScreen from "./components/SearchScreen";
 
-const Search = () => {
+const Search = ({ route }) => {
+
+  let day = route.params != undefined ? route.params.dia : null;
+  let meal = route.params != undefined ? route.params.meal : null;
+
   return (
     <View style={pageStyles.screen}>
       <Capcelera title="Search" back={true}></Capcelera>
       <View style={pageStyles.cos}>
         {/*Anna*/}
-        <SearchScreen />
+        <SearchScreen day={day} meal={meal} />
       </View>
     </View>
   );

@@ -15,16 +15,13 @@ const Separator = () => <View style={styles.separator} />;
 
 //CONSULTA API
 //Es crida quan es vol pintar la llista
-const Search = ({ route }) => {
+const Search = ({ day, meal }) => {
   const [recipelist, setRecipelist] = useState(null);
   const [text, setText] = useState(null);
   const [textintroduit, setTextIntroduit] = useState(null);
   const updateSearch = () => {
     setText(textintroduit);
   };
-
-  let day = route.params != undefined ? route.params.dia : null;
-  let meal = route.params != undefined ? route.params.meal : null;
 
   let espera = false;
 
@@ -45,6 +42,10 @@ const Search = ({ route }) => {
               label: recepta.recipe.label,
               source: recepta.recipe.source,
               image: recepta.recipe.image,
+              healthLabels: recepta.recipe.healthLabels,
+              url: recepta.recipe.url,
+              dietLabels: recepta.recipe.dietLabels,
+              ingredientLines: recepta.recipe.ingredientLines,
             }));
             setRecipelist(fetchedRecipelist);
             espera = false;
@@ -79,7 +80,7 @@ const Search = ({ route }) => {
       </View>
       <FlatList
         data={recipelist}
-        renderItem={({ item }) => <ReceptaCurta {...item} />}
+        renderItem={({ item }) => <ReceptaCurta {...item} day={day} meal={meal} />}
         keyExtractor={(recepta) => recepta.label + recepta.image}
         ItemSeparatorComponent={Separator}
       />
