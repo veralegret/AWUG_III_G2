@@ -11,13 +11,11 @@ const ReceptaCurta = ({
   dietLabels,
   ingredientLines,
   day,
-  meal
+  meal,
 }) => {
-  j
   const navigation = useNavigation();
 
   const GoToRecipe = ({ title, img, web, icons, font, dieta, ingr }) => {
-
     navigation.navigate("Recipe", {
       dia: day,
       meal: meal,
