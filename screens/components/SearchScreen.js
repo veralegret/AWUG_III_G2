@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesome } from "@expo/vector-icons";
 import {
   FlatList,
   StyleSheet,
@@ -32,8 +33,8 @@ const Search = ({ day, meal }) => {
         espera = true;
         fetch(
           "https://api.edamam.com/search?q=" +
-          text +
-          "&app_id=b8f6fc18&app_key=3ba492833144f23779ec29839285f849&from=0&to=30"
+            text +
+            "&app_id=b8f6fc18&app_key=3ba492833144f23779ec29839285f849&from=0&to=30"
         )
           .then((response) => response.json())
           .catch((error) => console.error("Error:", error))
@@ -68,19 +69,30 @@ const Search = ({ day, meal }) => {
 
   return (
     <View>
-      <View>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Search a recipe..."
-          onChangeText={(textintroduit) => setTextIntroduit(textintroduit)}
-        />
-        <TouchableOpacity onPress={() => updateSearch()}>
-          <Text style={styles.boto}>SEARCH</Text>
-        </TouchableOpacity>
+      <View style={styles.filaBuscador}>
+        <View style={styles.columnaBuscador}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Search a recipe..."
+            onChangeText={(textintroduit) => setTextIntroduit(textintroduit)}
+          />
+        </View>
+        <View style={styles.columna}>
+          <TouchableOpacity onPress={() => updateSearch()}>
+            <FontAwesome
+              name="search"
+              size={25}
+              color="#9ccc65"
+              style={styles.iconaBuscador}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
       <FlatList
         data={recipelist}
-        renderItem={({ item }) => <ReceptaCurta {...item} day={day} meal={meal} />}
+        renderItem={({ item }) => (
+          <ReceptaCurta {...item} day={day} meal={meal} />
+        )}
         keyExtractor={(recepta) => recepta.label + recepta.image}
         ItemSeparatorComponent={Separator}
       />
@@ -130,5 +142,23 @@ const styles = StyleSheet.create({
     color: "#9ccc65",
     borderColor: "#9ccc65",
     backgroundColor: "#fff",
+  },
+
+  filaBuscador: {
+    flexGrow: 1,
+    flexDirection: "row",
+  },
+
+  columnaBuscador: {
+    flexGrow: 1,
+    flexDirection: "column",
+    alignContent: "center",
+  },
+  iconaBuscador: {
+    alignContent: "center",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingLeft: 20,
+    paddingTop: 15,
   },
 });

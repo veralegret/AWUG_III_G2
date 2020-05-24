@@ -69,9 +69,11 @@ const LeftRoute = () => {
 
         <Text style={styles.highlightText}>Health Labels</Text>
         <View style={styles.highlight}></View>
-        <View style={styles.fila}>
-          <HealthView labels={recipe.healthLabels} />
-        </View>
+        <ScrollView horizontal={true}>
+          <View style={styles.fila}>
+            <HealthView labels={recipe.healthLabels} />
+          </View>
+        </ScrollView>
 
         <Text style={styles.highlightText}>Diet Labels</Text>
         <View style={styles.highlight}></View>
@@ -152,6 +154,17 @@ const HealthView = ({ labels }) => {
           </View>
         );
 
+      case "Vegetarian":
+        return (
+          <View key={label} style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/vegetarian.png")}
+            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+          </View>
+        );
+
       case "Shellfish-Free":
         return (
           <View key={label} style={styles.iconsView}>
@@ -191,6 +204,17 @@ const HealthView = ({ labels }) => {
             <Image
               style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
               source={require("../assets/img/etiquetes/read-meat-free.png")}
+            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+          </View>
+        );
+
+      case "Alcohol-Free":
+        return (
+          <View key={label} style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/no-alcohol.png")}
             />
             <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
@@ -258,6 +282,17 @@ const DietView = ({ labels }) => {
           </View>
         );
 
+      case "Low-Fat":
+        return (
+          <View key={label} style={styles.iconsView}>
+            <Image
+              style={(styles.imatge_etiqueta, { height: 50, width: 50 })}
+              source={require("../assets/img/etiquetes/low-fat.png")}
+            />
+            <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+          </View>
+        );
+
       default:
         return (
           <View key={label}>
@@ -290,7 +325,6 @@ const Recipe = ({ route }) => {
 
       setRecipe(response);
       console.log(response);
-
     } else {
       let day = route.params != undefined ? route.params.dia : null;
       let meal = route.params != undefined ? route.params.meal : null;
@@ -342,9 +376,9 @@ const Recipe = ({ route }) => {
     );
   };
   const SelectRecipe = () => {
-    const Select = () => { };
+    const Select = () => {};
     return (
-      <TouchableOpacity style={styles.botoView} onPress={() => { }}>
+      <TouchableOpacity style={styles.botoView} onPress={() => {}}>
         <Text style={styles.boto_recepta}>SELECCIONAR RECETA</Text>
       </TouchableOpacity>
     );
@@ -405,7 +439,7 @@ const styles = StyleSheet.create({
   recipeImg: {
     width: Dimensions.get("window").width,
     marginVertical: 20,
-    borderRadius: 20,
+    borderRadius: 8,
   },
   highlightText: {
     textAlign: "center",
