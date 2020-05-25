@@ -37,9 +37,9 @@ const ReceptaCurta = ({
         GoToRecipe({
           title: label,
           img: image,
-          web: source,
+          web: url,
           icons: healthLabels,
-          font: url,
+          font: source,
           dieta: dietLabels,
           ingr: ingredientLines,
         })
