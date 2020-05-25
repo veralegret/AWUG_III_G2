@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import MealImage from "./MealImage";
 import { observer } from "mobx-react";
-
 import { PM_Context } from "../../model/PM_Model";
 import { useNavigation } from "@react-navigation/native";
 

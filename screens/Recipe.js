@@ -16,10 +16,9 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TabView, SceneMap, TabBar } from "react-native-tab-view";
 import Capcelera from "./components/Capcelera";
 import Ingredient from "./components/Ingredient";
-
 import { observer } from "mobx-react";
-
 import { PM_Context } from "../model/PM_Model";
+import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export const RecipeContext = createContext({});
@@ -312,17 +311,21 @@ const DietView = ({ labels }) => {
 
 const initialLayout = { width: Dimensions.get("window").width };
 let choose = false;
+let day;
+let meal;
+let mealDay;
 const Recipe = ({ route }) => {
+  const navigation = useNavigation();
   const [recipe, setRecipe] = useState({});
 
   //OPCIÓ 1 : ve desde DayScreen, per tant la recepta està al model
   const pm = useContext(PM_Context);
 
   useEffect(() => {
-    let day = route.params != undefined ? route.params.dia : null;
-    let meal = route.params != undefined ? route.params.meal : null;
+    day = route.params != undefined ? route.params.dia : null;
+    meal = route.params != undefined ? route.params.meal : null;
 
-    let mealDay;
+    mealDay;
     if (day == 0) {
       mealDay = day + 6;
     } else {
@@ -331,7 +334,7 @@ const Recipe = ({ route }) => {
     let response;
     switch (meal) {
       case 0:
-        response = pm.week[mealDay].meals.deayuno;
+        response = pm.week[mealDay].meals.desayuno;
         break;
       case 1:
         response = pm.week[mealDay].meals.comida;
@@ -345,13 +348,13 @@ const Recipe = ({ route }) => {
     }
     //Si la resposta es null, vens del Search
     if (response == null) {
+      console.log("from search " + response);
       choose = true;
-      //console.log("search " + choose);
       let recipeSearch = route.params != undefined ? route.params.recipe : null;
       setRecipe(recipeSearch);
     } else {
+      console.log("from model " + response.label);
       choose = false;
-      //console.log("model " + choose);
       setRecipe(response);
     }
   }, [route.params.dia, route.params.meal]);
@@ -376,18 +379,26 @@ const Recipe = ({ route }) => {
       </View>
     );
   };
+
   const SelectRecipe = () => {
-    const Select = () => { };
-    //console.log(choose);
+    const Select = () => {
+      pm.updateMeal({ day: mealDay, meal: meal, recipe: recipe });
+      navigation.navigate("Week");
+    };
+    const Delete = () => {
+      pm.deleteMeal({ day: mealDay, meal: meal });
+      navigation.navigate("Week");
+    };
+
     if (choose) {
       return (
-        <TouchableOpacity style={styles.botoView} onPress={() => { }}>
+        <TouchableOpacity style={styles.botoView} onPress={Select}>
           <Text style={styles.boto_recepta}>SELECT RECIPE</Text>
         </TouchableOpacity>
       );
     } else {
       return (
-        <TouchableOpacity style={styles.botoView} onPress={() => { }}>
+        <TouchableOpacity style={styles.botoView} onPress={Delete}>
           <Text style={styles.boto_recepta}>DELETE RECIPE</Text>
         </TouchableOpacity>
       );
