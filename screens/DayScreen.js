@@ -48,7 +48,6 @@ const DayScreen = ({ route }) => {
   const GoToMeal = ({ meal, state }) => {
     if (state != null) {
       navigation.navigate("Recipe", { dia: day.day, meal: meal });
-      //navigation.navigate("Recipe", { dia: day.day, meal: meal , recipe: {}});
     } else {
       navigation.navigate("Search", { dia: day.day, meal: meal });
     }
