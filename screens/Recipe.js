@@ -52,6 +52,9 @@ const LeftRoute = () => {
   } else {
     return (
       <ScrollView style={pageStyles.cos}>
+
+        <Text title={recipe.label} style={styles.text_titol}>{recipe.label}</Text>
+
         <Image
           style={[styles.recipeImg, { height: 300 }]}
           source={{ uri: image }}
@@ -74,12 +77,12 @@ const LeftRoute = () => {
             <HealthView labels={recipe.healthLabels} />
           </View>
         </ScrollView>
-
         <Text style={styles.highlightText}>Diet Labels</Text>
         <View style={styles.highlight}></View>
         <View style={styles.fila}>
           <DietView labels={recipe.dietLabels} />
         </View>
+
       </ScrollView>
     );
   }
@@ -357,8 +360,8 @@ const Recipe = ({ route }) => {
 
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    { key: "left", title: "Receta" },
-    { key: "right", title: "Ingredientes" },
+    { key: "left", title: "Information" },
+    { key: "right", title: "Ingredients" },
   ]);
 
   const renderScene = SceneMap({
@@ -394,8 +397,7 @@ const Recipe = ({ route }) => {
   return (
     <RecipeContext.Provider value={recipe}>
       <View style={pageStyles.screen}>
-        <Capcelera title={recipe.label} back={true}></Capcelera>
-
+        <Capcelera title="Recipe" back={true}></Capcelera>
         <View style={pageStyles.cos}>
           <TabView
             navigationState={{ index, routes }}
@@ -508,5 +510,16 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
     justifyContent: "center",
     alignItems: "center",
+  },
+  text_titol: {
+    fontSize: 20,
+    textAlign: "left",
+    marginTop: 10,
+    textAlignVertical: "center",
+    color: "#9ccc65",
+    ...Platform.select({
+      ios: { fontFamily: "Arial" },
+      android: { fontFamily: "Roboto" },
+    }),
   },
 });
