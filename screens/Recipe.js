@@ -51,8 +51,9 @@ const LeftRoute = () => {
   } else {
     return (
       <ScrollView style={pageStyles.cos}>
-
-        <Text title={recipe.label} style={styles.text_titol}>{recipe.label}</Text>
+        <Text title={recipe.label} style={styles.text_titol}>
+          {recipe.label}
+        </Text>
 
         <Image
           style={[styles.recipeImg, { height: 300 }]}
@@ -81,7 +82,6 @@ const LeftRoute = () => {
         <View style={styles.fila}>
           <DietView labels={recipe.dietLabels} />
         </View>
-
       </ScrollView>
     );
   }
@@ -299,8 +299,9 @@ const DietView = ({ labels }) => {
         return (
           <View key={label}>
             <View style={pageStyles.fila}>
-              <Text style={styles.boleta}>{"\u2B24"}</Text>
-              <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
+              <Text style={styles.text_etiqueta}>
+                No diet labels for this recipe
+              </Text>
             </View>
           </View>
         );
@@ -459,7 +460,6 @@ const styles = StyleSheet.create({
   recipeImg: {
     width: Dimensions.get("window").width,
     marginVertical: 20,
-    borderRadius: 8,
   },
   highlightText: {
     textAlign: "center",
