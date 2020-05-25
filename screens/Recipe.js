@@ -30,6 +30,7 @@ const Separator = () => <View style={pageStyles.separator} />;
 const RightRoute = () => {
   const recipe = useContext(RecipeContext);
   let ingr = recipe.ingredientLines;
+
   if (ingr == null) {
     return <ActivityIndicator size="large" color="#9ccc65" />;
   } else {
@@ -37,7 +38,7 @@ const RightRoute = () => {
       <FlatList
         data={ingr}
         renderItem={({ item }) => <Ingredient ingredient={item} />}
-        keyExtractor={(item) => item}
+        keyExtractor={(item) => item + Math.floor(Math.random() * 100) + 1}
         ItemSeparatorComponent={Separator}
       />
     );
@@ -308,7 +309,7 @@ const DietView = ({ labels }) => {
 };
 
 const initialLayout = { width: Dimensions.get("window").width };
-
+let choose = false;
 const Recipe = ({ route }) => {
   const [recipe, setRecipe] = useState({});
 
@@ -316,43 +317,42 @@ const Recipe = ({ route }) => {
   const pm = useContext(PM_Context);
 
   useEffect(() => {
-    if (route.params.recipe) {
-      // Vinc des del Search
-      console.log("Holaaaa");
-      let day = route.params != undefined ? route.params.dia : null;
-      let meal = route.params != undefined ? route.params.meal : null;
-      let response = route.params != undefined ? route.params.recipe : null;
+    let day = route.params != undefined ? route.params.dia : null;
+    let meal = route.params != undefined ? route.params.meal : null;
 
-      setRecipe(response);
-      console.log(response);
+    let mealDay;
+    if (day == 0) {
+      mealDay = day + 6;
     } else {
-      let day = route.params != undefined ? route.params.dia : null;
-      let meal = route.params != undefined ? route.params.meal : null;
-
-      let mealDay;
-      if (day == 0) {
-        mealDay = day + 6;
-      } else {
-        mealDay = day - 1;
-      }
-      let response;
-      switch (meal) {
-        case 0:
-          response = pm.week[mealDay].meals.deayuno;
-          break;
-        case 1:
-          response = pm.week[mealDay].meals.comida;
-          break;
-        case 2:
-          response = pm.week[mealDay].meals.merienda;
-          break;
-        case 3:
-          response = pm.week[mealDay].meals.cena;
-          break;
-      }
+      mealDay = day - 1;
+    }
+    let response;
+    switch (meal) {
+      case 0:
+        response = pm.week[mealDay].meals.deayuno;
+        break;
+      case 1:
+        response = pm.week[mealDay].meals.comida;
+        break;
+      case 2:
+        response = pm.week[mealDay].meals.merienda;
+        break;
+      case 3:
+        response = pm.week[mealDay].meals.cena;
+        break;
+    }
+    //Si la resposta es null, vens del Search
+    if (response == null) {
+      choose = true;
+      //console.log("search " + choose);
+      let recipeSearch = route.params != undefined ? route.params.recipe : null;
+      setRecipe(recipeSearch);
+    } else {
+      choose = false;
+      //console.log("model " + choose);
       setRecipe(response);
     }
-  }, [route.params]);
+  }, [route.params.dia, route.params.meal]);
 
   //FINAL OPCIÓ 1
 
@@ -368,7 +368,6 @@ const Recipe = ({ route }) => {
   });
 
   const renderLabel = ({ route }) => {
-    console.log(recipe);
     return (
       <View>
         <Text style={styles.tabText}>{route.title}</Text>
@@ -377,11 +376,20 @@ const Recipe = ({ route }) => {
   };
   const SelectRecipe = () => {
     const Select = () => {};
-    return (
-      <TouchableOpacity style={styles.botoView} onPress={() => {}}>
-        <Text style={styles.boto_recepta}>SELECCIONAR RECETA</Text>
-      </TouchableOpacity>
-    );
+    //console.log(choose);
+    if (choose) {
+      return (
+        <TouchableOpacity style={styles.botoView} onPress={() => {}}>
+          <Text style={styles.boto_recepta}>SELECT RECIPE</Text>
+        </TouchableOpacity>
+      );
+    } else {
+      return (
+        <TouchableOpacity style={styles.botoView} onPress={() => {}}>
+          <Text style={styles.boto_recepta}>DELETE RECIPE</Text>
+        </TouchableOpacity>
+      );
+    }
   };
 
   return (

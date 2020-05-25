@@ -4,22 +4,26 @@ import { FontAwesome } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Ingredient = ({ ingredient }) => {
-  return (
-    <View style={styles.ingr}>
-      <View style={styles.iconPlace}>
-        <MaterialCommunityIcons
-          name="food-variant"
-          size={20}
-          color="#9ccc65"
-          style={styles.icon}
-        />
-      </View>
+  if (ingredient != "null") {
+    return (
+      <View style={styles.ingr}>
+        <View style={styles.iconPlace}>
+          <MaterialCommunityIcons
+            name="food-variant"
+            size={20}
+            color="#9ccc65"
+            style={styles.icon}
+          />
+        </View>
 
-      <View>
-        <Text style={styles.name}>{ingredient}</Text>
+        <View>
+          <Text style={styles.name}>{ingredient}</Text>
+        </View>
       </View>
-    </View>
-  );
+    );
+  } else {
+    return null;
+  }
 };
 
 export default Ingredient;
