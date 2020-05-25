@@ -4,7 +4,6 @@ import {
   View,
   Dimensions,
   Button,
-  TouchableHighlight,
   FlatList,
   Image,
   Linking,
@@ -57,7 +56,7 @@ const LeftRoute = () => {
           source={{ uri: image }}
         />
 
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={() => {
             Linking.openURL(recipe.url);
           }}
@@ -65,7 +64,7 @@ const LeftRoute = () => {
           <Text style={styles.stepsBtn}>
             Pasos de la receta en "{recipe.source}"
           </Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
         <Text style={styles.highlightText}>Health Labels</Text>
         <View style={styles.highlight}></View>

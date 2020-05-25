@@ -29,7 +29,7 @@ const WeekScreen = observer(() => {
         <FlatList
           data={pm.week}
           renderItem={({ item }) => <DayofWeek day={item} />}
-          keyExtractor={(item) => "key" + item.day}
+          keyExtractor={(item) => "key" + item.day + Math.floor(Math.random() * 100) + 1}
           ItemSeparatorComponent={Separator}
         />
       </View>
