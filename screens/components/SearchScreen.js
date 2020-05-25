@@ -33,8 +33,8 @@ const Search = ({ day, meal }) => {
         espera = true;
         fetch(
           "https://api.edamam.com/search?q=" +
-            text +
-            "&app_id=b8f6fc18&app_key=3ba492833144f23779ec29839285f849&from=0&to=30"
+          text +
+          "&app_id=b8f6fc18&app_key=3ba492833144f23779ec29839285f849&from=0&to=30"
         )
           .then((response) => response.json())
           .catch((error) => console.error("Error:", error))
@@ -93,7 +93,7 @@ const Search = ({ day, meal }) => {
         renderItem={({ item }) => (
           <ReceptaCurta {...item} day={day} meal={meal} />
         )}
-        keyExtractor={(recepta) => recepta.label + recepta.image}
+        keyExtractor={(recepta) => recepta.label + Math.floor(Math.random() * 100) + 1}
         ItemSeparatorComponent={Separator}
       />
     </View>

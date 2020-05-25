@@ -4,7 +4,7 @@ import {
   View,
   Dimensions,
   Button,
-  TouchableHighlight,
+  TouchableOpacity,
   FlatList,
   Image,
   Linking,
@@ -58,7 +58,7 @@ const LeftRoute = () => {
           source={{ uri: image }}
         />
 
-        <TouchableHighlight
+        <TouchableOpacity
           onPress={() => {
             Linking.openURL(recipe.url);
           }}
@@ -66,7 +66,7 @@ const LeftRoute = () => {
           <Text style={styles.stepsBtn}>
             Pasos de la receta en "{recipe.source}"
           </Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
 
         <Text style={styles.highlightText}>Health Labels</Text>
         <View style={styles.highlight}></View>
@@ -375,17 +375,17 @@ const Recipe = ({ route }) => {
     );
   };
   const SelectRecipe = () => {
-    const Select = () => {};
+    const Select = () => { };
     //console.log(choose);
     if (choose) {
       return (
-        <TouchableOpacity style={styles.botoView} onPress={() => {}}>
+        <TouchableOpacity style={styles.botoView} onPress={() => { }}>
           <Text style={styles.boto_recepta}>SELECT RECIPE</Text>
         </TouchableOpacity>
       );
     } else {
       return (
-        <TouchableOpacity style={styles.botoView} onPress={() => {}}>
+        <TouchableOpacity style={styles.botoView} onPress={() => { }}>
           <Text style={styles.boto_recepta}>DELETE RECIPE</Text>
         </TouchableOpacity>
       );

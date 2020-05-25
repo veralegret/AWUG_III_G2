@@ -48,7 +48,7 @@ const RightRoute = () => {
       <FlatList
         data={ingr}
         renderItem={({ item }) => <Ingredient ingredient={item} />}
-        keyExtractor={(item) => item}
+        keyExtractor={(item) => item + Math.floor(Math.random() * 100) + 1}
         ItemSeparatorComponent={Separator}
       />
     );
