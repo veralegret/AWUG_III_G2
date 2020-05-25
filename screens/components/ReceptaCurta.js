@@ -48,7 +48,7 @@ const ReceptaCurta = ({
       <View style={styles.item}>
         <Image style={styles.picture} source={{ uri: image }} />
         <View>
-          <Text style={styles.name}>{label}</Text>
+          <Text style={styles.name} numberOfLines={2}>{label}</Text>
           <Text style={styles.font}>{source}</Text>
         </View>
       </View>
