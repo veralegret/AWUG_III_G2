@@ -70,20 +70,45 @@ const LeftRoute = () => {
           </Text>
         </TouchableOpacity>
 
+        <Health healthItem={recipe.healthLabels} />
+        <Diet dietItem={recipe.dietLabels} />
+
+      </ScrollView>
+    );
+  }
+};
+
+const Health = ({ healthItem }) => {
+  if (healthItem.length > 0) {
+    return (
+      <View>
         <Text style={styles.highlightText}>Health Labels</Text>
         <View style={styles.highlight}></View>
         <ScrollView horizontal={true}>
           <View style={styles.fila}>
-            <HealthView labels={recipe.healthLabels} />
+            <HealthView labels={healthItem} />
           </View>
         </ScrollView>
+      </View>
+    );
+  } else {
+    return null;
+  }
+};
+
+const Diet = ({ dietItem }) => {
+  if (dietItem.length > 0) {
+    return (
+      <View>
         <Text style={styles.highlightText}>Diet Labels</Text>
         <View style={styles.highlight}></View>
         <View style={styles.fila}>
-          <DietView labels={recipe.dietLabels} />
+          <DietView labels={dietItem} />
         </View>
-      </ScrollView>
+      </View>
     );
+  } else {
+    return null;
   }
 };
 
@@ -349,12 +374,12 @@ const Recipe = ({ route }) => {
     }
     //Si la resposta es null, vens del Search
     if (response == null) {
-      console.log("from search " + response);
+      //console.log("from search " + response);
       choose = true;
       let recipeSearch = route.params != undefined ? route.params.recipe : null;
       setRecipe(recipeSearch);
     } else {
-      console.log("from model " + response.label);
+      //console.log("from model " + response.label);
       choose = false;
       setRecipe(response);
     }
