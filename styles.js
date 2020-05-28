@@ -151,8 +151,9 @@ export const pageStyles = StyleSheet.create({
     paddingBottom: 0,
   },
   backBtn: {
-    marginTop: 20,
+    marginTop: 14,
     marginRight: 15,
+    alignItems: "center",
   },
   cos: {
     flex: 8 / 9,
