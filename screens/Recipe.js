@@ -72,7 +72,6 @@ const LeftRoute = () => {
 
         <Health healthItem={recipe.healthLabels} />
         <Diet dietItem={recipe.dietLabels} />
-
       </ScrollView>
     );
   }
@@ -84,11 +83,9 @@ const Health = ({ healthItem }) => {
       <View>
         <Text style={styles.highlightText}>Health Labels</Text>
         <View style={styles.highlight}></View>
-        <ScrollView horizontal={true}>
-          <View style={styles.fila}>
-            <HealthView labels={healthItem} />
-          </View>
-        </ScrollView>
+        <View style={styles.filaIcones}>
+          <HealthView labels={healthItem} />
+        </View>
       </View>
     );
   } else {
@@ -481,6 +478,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+  },
+
+  filaIcones: {
+    flexGrow: 1,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap",
+    width:
+      Dimensions.get("window").width > Dimensions.get("window").width
+        ? Dimensions.get("window").width
+        : Dimensions.get("window").width,
   },
   recipeImg: {
     width: Dimensions.get("window").width,
