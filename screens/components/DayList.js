@@ -7,6 +7,17 @@ import { useNavigation } from "@react-navigation/native";
 var today = new Date().getDay();
 var num = new Date().getDate();
 
+const Day = () => {
+    return (
+        <View style={styles.cont}>
+            <Text>Desayuno: []</Text>
+            <Text>Comida: []</Text>
+            <Text>Merienda: []</Text>
+            <Text>Cena: []</Text>
+        </View>
+    );
+}
+
 const DayList = ({ day }) => {
     const pm = useContext(PM_Context);
 
@@ -20,13 +31,18 @@ const DayList = ({ day }) => {
     var diaSemana = pm.dayOfWeek[day.day];
     if (day.day == today) {
         return (
-            <Text>Today</Text>
-
+            <View>
+                <Text style={styles.dia}>Today</Text>
+                <Day />
+            </View>
         );
     }
     else {
         return (
-            <Text>{diaSemana} {dia}</Text>
+            <View>
+                <Text style={styles.dia}>{diaSemana} {dia}</Text>
+                <Day />
+            </View>
         );
     }
 
@@ -36,5 +52,14 @@ const DayList = ({ day }) => {
 export default observer(DayList);
 
 const styles = StyleSheet.create({
+    dia: {
+        fontSize: 20,
+        marginLeft: 10,
+        marginTop: 10,
+    },
+
+    cont: {
+        marginLeft: 30,
+    }
 
 });
