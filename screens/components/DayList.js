@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 import { observer } from "mobx-react";
 import { PM_Context } from "../../model/PM_Model";
-import { useNavigation } from "@react-navigation/native";
 
 var today = new Date().getDay();
 var num = new Date().getDate();
