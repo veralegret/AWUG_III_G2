@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import MealImage from "./MealImage";
+import MealImageWeek from "./MealImageWeek";
 import { observer } from "mobx-react";
 import { PM_Context } from "../../model/PM_Model";
 import { useNavigation } from "@react-navigation/native";
@@ -39,10 +39,10 @@ const DayofWeek = ({ day }) => {
             <Text>Today</Text>
           </View>
           <View style={styles.mealRow}>
-            <MealImage meal={0} state={day.meals.desayuno} style={styles.img} />
-            <MealImage meal={1} state={day.meals.comida} style={styles.img} />
-            <MealImage meal={2} state={day.meals.merienda} style={styles.img} />
-            <MealImage meal={3} state={day.meals.cena} style={styles.img} />
+            <MealImageWeek meal={0} state={day.meals.desayuno} style={styles.img} />
+            <MealImageWeek meal={1} state={day.meals.comida} style={styles.img} />
+            <MealImageWeek meal={2} state={day.meals.merienda} style={styles.img} />
+            <MealImageWeek meal={3} state={day.meals.cena} style={styles.img} />
           </View>
         </View>
       </TouchableOpacity>
@@ -60,10 +60,10 @@ const DayofWeek = ({ day }) => {
             <Text>{diaSemana}</Text>
           </View>
           <View style={styles.mealRow}>
-            <MealImage meal={0} state={day.meals.desayuno} style={styles.img} />
-            <MealImage meal={1} state={day.meals.comida} style={styles.img} />
-            <MealImage meal={2} state={day.meals.merienda} style={styles.img} />
-            <MealImage meal={3} state={day.meals.cena} style={styles.img} />
+            <MealImageWeek meal={0} state={day.meals.desayuno} style={styles.img} />
+            <MealImageWeek meal={1} state={day.meals.comida} style={styles.img} />
+            <MealImageWeek meal={2} state={day.meals.merienda} style={styles.img} />
+            <MealImageWeek meal={3} state={day.meals.cena} style={styles.img} />
           </View>
         </View>
       </TouchableOpacity>
@@ -102,5 +102,6 @@ const styles = StyleSheet.create({
     height: Dimensions.get("screen").width / 6,
     marginHorizontal: 4,
     borderRadius: 10,
+    opacity: 0.6,
   },
 });
