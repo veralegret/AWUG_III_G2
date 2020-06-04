@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Text, View, StyleSheet, FlatList, Image } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import { observer } from "mobx-react";
 import { PM_Context } from "../../model/PM_Model";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -7,9 +7,19 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 var today = new Date().getDay();
 var num = new Date().getDate();
 
+
+
+
 const IngredientsApet = ({ labels }) => {
   const res = labels.map((label) => {
-    return <Text>{label}</Text>;
+    var buyed = false;
+    if (!buyed) {
+      return <TouchableOpacity onPress={(buyed) => buyed = true}><Text style={styles.text_verd}>{label}</Text></TouchableOpacity>;
+    }
+    else {
+      return <TouchableOpacity onPress={(buyed) => buyed = false}><Text style={styles.text_vermell}>{label}</Text></TouchableOpacity>;
+    }
+
   });
   return res;
 };
@@ -18,7 +28,7 @@ const MealIngr = ({ meal }) => {
   if (meal != null) {
     return <IngredientsApet labels={meal.ingredientLines} />;
   } else {
-    return <Text style={styles.text}>No recipe selected.</Text>;
+    return <Text style={styles.disabled}> No recipe selected.</Text>;
   }
 };
 
@@ -32,30 +42,22 @@ const Day = ({ day }) => {
 
   return (
     <View style={styles.apets}>
-      <TouchableOpacity>
-        <Text style={styles.text}>
-          Breakfast:
-          <MealIngr meal={desayuno} />
+      <Text style={styles.titol2}>
+        Breakfast:
         </Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.text}>
-          Lunch:
+      <MealIngr meal={desayuno} />
+      <Text style={styles.titol2}>
+        Lunch:
           <MealIngr meal={comida} />
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.text}>
-          Snack:
+      </Text>
+      <Text style={styles.titol2}>
+        Snack:
           <MealIngr meal={merienda} />
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Text style={styles.text}>
-          Dinner:
+      </Text>
+      <Text style={styles.titol2}>
+        Dinner:
           <MealIngr meal={cena} />
-        </Text>
-      </TouchableOpacity>
+      </Text>
     </View>
   );
 };
@@ -100,7 +102,7 @@ const styles = StyleSheet.create({
   },
 
   apets: {
-    marginLeft: 30,
+    marginLeft: 20,
   },
 
   container: {
@@ -109,7 +111,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginHorizontal: 15,
     padding: 10,
-    shadowColor: "#000",
+    shadowColor: "grey",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -120,7 +122,47 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
 
-  text: {
+  text_vermell: {
+    marginLeft: 10,
+    backgroundColor: "#ff6f43",
+    marginVertical: 5,
+    borderRadius: 10,
+    padding: 10,
+    color: "white",
+    shadowColor: "grey",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+
+    elevation: 4,
+  },
+
+  text_verd: {
+    marginLeft: 10,
+    backgroundColor: "#9ccc65",
+    marginVertical: 5,
+    borderRadius: 10,
+    padding: 10,
+    color: "white",
+    shadowColor: "grey",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+
+    elevation: 4,
+  },
+
+  titol2: {
     fontSize: 15,
   },
+
+  disabled: {
+    color: "grey"
+  }
 });
