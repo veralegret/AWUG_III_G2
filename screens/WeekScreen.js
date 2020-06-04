@@ -26,6 +26,13 @@ const WeekScreen = observer(() => {
     <View style={pageStyles.screen}>
       <Capcelera title="Semana"></Capcelera>
       <View style={pageStyles.cos}>
+        <View style={pageStyles.nom_apats_setmana_row}>
+          <Text style={pageStyles.nom_apats_setmana}></Text>
+          <Text style={pageStyles.nom_apats_setmana_1}>Breakfast</Text>
+          <Text style={pageStyles.nom_apats_setmana_2}>Luch</Text>
+          <Text style={pageStyles.nom_apats_setmana_3}>Snack</Text>
+          <Text style={pageStyles.nom_apats_setmana_4}>Dinner</Text>
+        </View>
         <FlatList
           data={pm.week}
           renderItem={({ item }) => <DayofWeek day={item} />}
