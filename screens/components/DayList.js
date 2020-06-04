@@ -17,16 +17,16 @@ const Day = ({ day }) => {
     return (
         <View style={styles.apets}>
             <TouchableOpacity >
-                <Text style={styles.text}>Desayuno: {pm.week[day].meals.desayuno} </Text>
+                <Text style={styles.text}>Desayuno: {pm.week[day].meals.desayuno}</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-                <Text style={styles.text}>Comida: []</Text>
+                <Text style={styles.text}>Comida: </Text>
             </TouchableOpacity>
             <TouchableOpacity>
-                <Text style={styles.text}>Merienda: []</Text>
+                <Text style={styles.text}>Merienda:</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-                <Text style={styles.text}>Cena: []</Text>
+                <Text style={styles.text}>Cena:</Text>
             </TouchableOpacity>
         </View>
     );
