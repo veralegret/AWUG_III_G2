@@ -2,24 +2,38 @@ import React, { useContext } from "react";
 import { Text, View, StyleSheet, FlatList, Image } from "react-native";
 import { observer } from "mobx-react";
 import { PM_Context } from "../../model/PM_Model";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 var today = new Date().getDay();
 var num = new Date().getDate();
 
-const Day = () => {
+const IngredientsApet = () => {
+
+}
+
+const Day = ({ day }) => {
+    const pm = useContext(PM_Context);
+    console.log(day);
     return (
-        <View style={styles.cont}>
-            <Text>Desayuno: []</Text>
-            <Text>Comida: []</Text>
-            <Text>Merienda: []</Text>
-            <Text>Cena: []</Text>
+        <View style={styles.apets}>
+            <TouchableOpacity >
+                <Text style={styles.text}>Desayuno: {pm.week[day].meals.desayuno} </Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text style={styles.text}>Comida: []</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text style={styles.text}>Merienda: []</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+                <Text style={styles.text}>Cena: []</Text>
+            </TouchableOpacity>
         </View>
     );
 }
 
 const DayList = ({ day }) => {
     const pm = useContext(PM_Context);
-
     var res = 0;
     if (day.day == 0) {
         res = today - 7;
@@ -32,7 +46,7 @@ const DayList = ({ day }) => {
         return (
             <View style={styles.container}>
                 <Text style={styles.dia}>Today</Text>
-                <Day />
+                <Day day={day.day} />
             </View>
         );
     }
@@ -56,7 +70,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
 
-    cont: {
+    apets: {
         marginLeft: 30,
     },
 
@@ -76,5 +90,9 @@ const styles = StyleSheet.create({
 
         elevation: 5,
     },
+
+    text: {
+        fontSize: 15,
+    }
 
 });
