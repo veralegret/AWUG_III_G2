@@ -135,6 +135,48 @@ export const pageStyles = StyleSheet.create({
     marginTop: 15,
   },
 
+  nom_apats_setmana_row: {
+    flexDirection: "row",
+    marginTop: 10,
+    marginBottom: 10,
+  },
+
+  nom_apats_setmana_1: {
+    //flexDirection: "row",
+    //height: 50,
+    width: Dimensions.get("screen").width / 5,
+    marginLeft: 80,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  nom_apats_setmana_2: {
+    //flexDirection: "row",
+    //height: 50,
+    width: Dimensions.get("screen").width / 5,
+    marginLeft: 15,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  nom_apats_setmana_3: {
+    //flexDirection: "row",
+    //height: 50,
+    width: Dimensions.get("screen").width / 5,
+    marginLeft: -10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  nom_apats_setmana_4: {
+    //flexDirection: "row",
+    //height: 50,
+    width: Dimensions.get("screen").width / 5,
+    marginLeft: -5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   //Pagina llista (Enric)
   page: {
     flex: 1,
