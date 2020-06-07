@@ -114,7 +114,7 @@ class PM_Model {
       default:
         break;
     }
-    console.log(this.week);
+    //console.log(this.week);
   }
   @action deleteMeal({ day, meal }) {
     switch (meal) {

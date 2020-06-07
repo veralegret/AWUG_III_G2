@@ -7,24 +7,19 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 var today = new Date().getDay();
 var num = new Date().getDate();
 
-
-
-
 const IngredientsApet = ({ labels }) => {
   const res = labels.map((label) => {
-    var buyed = false;
-    if (!buyed) {
-      return <TouchableOpacity onPress={(buyed) => buyed = true}><Text style={styles.text_verd}>{label}</Text></TouchableOpacity>;
-    }
-    else {
-      return <TouchableOpacity onPress={(buyed) => buyed = false}><Text style={styles.text_vermell}>{label}</Text></TouchableOpacity>;
-    }
-
+    return (
+      <View key={label + Math.floor(Math.random() * 100) + 1}>
+        <Text style={styles.text_verd}>{label}</Text>
+      </View>
+    );
   });
   return res;
 };
 
 const MealIngr = ({ meal }) => {
+  //console.log(meal);
   if (meal != null) {
     return <IngredientsApet labels={meal.ingredientLines} />;
   } else {
@@ -33,7 +28,7 @@ const MealIngr = ({ meal }) => {
 };
 
 const Day = ({ day }) => {
-  //console.log(day);
+  console.log(day);
   let response = null;
   const desayuno = day.meals.desayuno;
   const comida = day.meals.comida;
@@ -42,22 +37,22 @@ const Day = ({ day }) => {
 
   return (
     <View style={styles.apets}>
-      <Text style={styles.titol2}>
-        Breakfast:
-        </Text>
-      <MealIngr meal={desayuno} />
-      <Text style={styles.titol2}>
-        Lunch:
-          <MealIngr meal={comida} />
-      </Text>
-      <Text style={styles.titol2}>
-        Snack:
-          <MealIngr meal={merienda} />
-      </Text>
-      <Text style={styles.titol2}>
-        Dinner:
-          <MealIngr meal={cena} />
-      </Text>
+      <View style={styles.titol2}>
+        <Text>Breakfast</Text>
+        <MealIngr meal={desayuno} />
+      </View>
+      <View style={styles.titol2}>
+        <Text>Lunch</Text>
+        <MealIngr meal={comida} />
+      </View>
+      <View style={styles.titol2}>
+        <Text>Snack</Text>
+        <MealIngr meal={merienda} />
+      </View>
+      <View style={styles.titol2}>
+        <Text>Dinner</Text>
+        <MealIngr meal={cena} />
+      </View>
     </View>
   );
 };
@@ -86,7 +81,6 @@ const DayList = ({ day }) => {
         <Text style={styles.dia}>
           {diaSemana}, {dia}
         </Text>
-
         <Day day={day} />
       </View>
     );
@@ -163,6 +157,6 @@ const styles = StyleSheet.create({
   },
 
   disabled: {
-    color: "grey"
-  }
+    color: "grey",
+  },
 });
