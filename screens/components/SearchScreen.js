@@ -18,7 +18,7 @@ const Separator = () => <View style={styles.separator} />;
 //Es crida quan es vol pintar la llista
 const Search = ({ day, meal }) => {
   const [recipelist, setRecipelist] = useState(null);
-  const [text, setText] = useState(null);
+  const [text, setText] = useState("melone");
   const [textintroduit, setTextIntroduit] = useState(null);
   const updateSearch = () => {
     setText(textintroduit);
@@ -31,6 +31,7 @@ const Search = ({ day, meal }) => {
     () => {
       if (espera == false) {
         espera = true;
+
         fetch(
           "https://api.edamam.com/search?q=" +
           text +

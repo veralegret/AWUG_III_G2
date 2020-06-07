@@ -137,15 +137,15 @@ export const pageStyles = StyleSheet.create({
 
   nom_apats_setmana_row: {
     flexDirection: "row",
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 3,
+    marginBottom: 3,
   },
 
   nom_apats_setmana_1: {
     //flexDirection: "row",
     //height: 50,
     width: Dimensions.get("screen").width / 5,
-    marginLeft: 80,
+    marginLeft: 87,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -154,7 +154,7 @@ export const pageStyles = StyleSheet.create({
     //flexDirection: "row",
     //height: 50,
     width: Dimensions.get("screen").width / 5,
-    marginLeft: 15,
+    marginLeft: 7,
     justifyContent: "center",
     alignItems: "center",
   },
