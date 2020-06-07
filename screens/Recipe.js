@@ -65,9 +65,7 @@ const LeftRoute = () => {
             Linking.openURL(recipe.url);
           }}
         >
-          <Text style={styles.stepsBtn}>
-            Pasos de la receta en "{recipe.source}"
-          </Text>
+          <Text style={styles.stepsBtn}>Recipe steps on "{recipe.source}"</Text>
         </TouchableOpacity>
 
         <Health healthItem={recipe.healthLabels} />

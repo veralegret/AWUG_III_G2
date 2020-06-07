@@ -27,7 +27,7 @@ const DayScreen = ({ route }) => {
     let dia = route.params != undefined ? route.params.dia : false;
 
     if (dia.day == new Date().getDay()) {
-      setTitle("Hoy");
+      setTitle("Today");
       let weekDay = new Date().getDay();
       if (weekDay == 0) {
         setDay(pm.week[weekDay + 6]);
@@ -35,7 +35,7 @@ const DayScreen = ({ route }) => {
         setDay(pm.week[weekDay - 1]);
       }
     } else {
-      setTitle(pm.dayOfWeek[dia.day] + ", día " + route.params.num);
+      setTitle(pm.dayOfWeek[dia.day] + ", day " + route.params.num);
       let weekDay = dia.day;
       if (weekDay == 0) {
         setDay(pm.week[weekDay + 6]);

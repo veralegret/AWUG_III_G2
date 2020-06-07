@@ -24,19 +24,21 @@ const WeekScreen = observer(() => {
   }
   return (
     <View style={pageStyles.screen}>
-      <Capcelera title="Semana"></Capcelera>
+      <Capcelera title="Week"></Capcelera>
       <View style={pageStyles.cos}>
         <View style={pageStyles.nom_apats_setmana_row}>
           <Text style={pageStyles.nom_apats_setmana}></Text>
           <Text style={pageStyles.nom_apats_setmana_1}>Breakfast</Text>
-          <Text style={pageStyles.nom_apats_setmana_2}>Luch</Text>
+          <Text style={pageStyles.nom_apats_setmana_2}>Lunch</Text>
           <Text style={pageStyles.nom_apats_setmana_3}>Snack</Text>
           <Text style={pageStyles.nom_apats_setmana_4}>Dinner</Text>
         </View>
         <FlatList
           data={pm.week}
           renderItem={({ item }) => <DayofWeek day={item} />}
-          keyExtractor={(item) => "key" + item.day + Math.floor(Math.random() * 100) + 1}
+          keyExtractor={(item) =>
+            "key" + item.day + Math.floor(Math.random() * 100) + 1
+          }
           ItemSeparatorComponent={Separator}
         />
       </View>

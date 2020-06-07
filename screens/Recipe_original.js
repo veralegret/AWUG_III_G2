@@ -69,7 +69,7 @@ const LeftRoute = () => {
           }}
         >
           <Text style={pageStyles.boto}>
-            Pasos de la receta en "{response.recipe.source}"
+            Reception steps on "{response.recipe.source}"
           </Text>
         </TouchableHighlight>
         <Image
@@ -127,7 +127,7 @@ const Recipe = () => {
         />
       </View>
       <TouchableHighlight style={pageStyles.botoView}>
-        <Text style={pageStyles.boto}>SELECCIONAR RECETA</Text>
+        <Text style={pageStyles.boto}>SELECT RECIPE</Text>
       </TouchableHighlight>
     </View>
   );

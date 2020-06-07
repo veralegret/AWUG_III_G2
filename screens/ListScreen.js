@@ -27,7 +27,7 @@ const ListScreen = () => {
 
   return (
     <View style={pageStyles.screen}>
-      <Capcelera title="Lista de la compra"></Capcelera>
+      <Capcelera title="Shopping list"></Capcelera>
       <View style={pageStyles.cos}>
         <DataList></DataList>
       </View>
