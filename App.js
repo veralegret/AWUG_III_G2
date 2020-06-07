@@ -7,6 +7,8 @@ import WeekScreen from "./screens/WeekScreen.js";
 import DayScreen from "./screens/DayScreen.js";
 import ListScreen from "./screens/ListScreen.js";
 
+import EntryPage from "./screens/EntryPage.js";
+
 import Recipe from "./screens/Recipe.js";
 import Search from "./screens/Search.js";
 
@@ -47,7 +49,8 @@ export default function App() {
     <PM_Provider>
       <NavigationContainer>
         <Stack.Navigator headerMode="none">
-          <Stack.Screen name="Prosciutto & Melone" component={MainPage} />
+          <Stack.Screen name="EntryPage" component={EntryPage} />
+          <Stack.Screen name="MainPage" component={MainPage} />
           <Stack.Screen name="Recipe" component={Recipe} />
           <Stack.Screen name="Search" component={Search} />
           <Stack.Screen name="Day" component={DayScreen} />

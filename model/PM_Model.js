@@ -134,17 +134,6 @@ class PM_Model {
         break;
     }
   }
-
-  //Acció d'esborrar la llista de la compra
-  //Fer que s'executi els diumeges a les 23:55
-  @action deleteWeekMeals() {
-    this.week.forEach((day) => {
-      day.meals.desayuno = null;
-      day.meals.comida = null;
-      day.meals.merienda = null;
-      day.meals.cena = null;
-    });
-  }
 }
 
 const model = new PM_Model();

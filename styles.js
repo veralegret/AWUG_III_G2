@@ -193,7 +193,7 @@ export const pageStyles = StyleSheet.create({
     paddingBottom: 0,
   },
   backBtn: {
-    marginTop: 14,
+    marginTop: 25,
     marginRight: 15,
     alignItems: "center",
   },

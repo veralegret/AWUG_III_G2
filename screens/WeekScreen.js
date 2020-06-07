@@ -45,6 +45,7 @@ const WeekScreen = observer(() => {
     </View>
   );
 });
+
 WeekScreen.Icon = ({ color, size }) => (
   <MaterialIcons name="view-week" size={size} color={color} />
 );

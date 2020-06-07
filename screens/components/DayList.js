@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { observer } from "mobx-react";
 import { PM_Context } from "../../model/PM_Model";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { pageStyles } from "../../styles";
 
 var today = new Date().getDay();
 var num = new Date().getDate();
@@ -37,20 +37,20 @@ const Day = ({ day }) => {
 
   return (
     <View style={styles.apets}>
-      <View style={styles.titol2}>
-        <Text>Breakfast</Text>
+      <View style={styles.mealView}>
+        <Text style={styles.mealTitle}>Breakfast</Text>
         <MealIngr meal={desayuno} />
       </View>
-      <View style={styles.titol2}>
-        <Text>Lunch</Text>
+      <View style={styles.mealView}>
+        <Text style={styles.mealTitle}>Lunch</Text>
         <MealIngr meal={comida} />
       </View>
-      <View style={styles.titol2}>
-        <Text>Snack</Text>
+      <View style={styles.mealView}>
+        <Text style={styles.mealTitle}>Snack</Text>
         <MealIngr meal={merienda} />
       </View>
-      <View style={styles.titol2}>
-        <Text>Dinner</Text>
+      <View style={styles.mealView}>
+        <Text style={styles.mealTitle}>Dinner</Text>
         <MealIngr meal={cena} />
       </View>
     </View>
@@ -72,6 +72,7 @@ const DayList = ({ day }) => {
     return (
       <View style={styles.container}>
         <Text style={styles.dia}>Today</Text>
+
         <Day day={day} />
       </View>
     );
@@ -93,12 +94,11 @@ const styles = StyleSheet.create({
   dia: {
     fontSize: 20,
     marginLeft: 10,
+    color: "grey",
   },
-
   apets: {
-    marginLeft: 20,
+    marginVertical: 10,
   },
-
   container: {
     backgroundColor: "white",
     borderRadius: 10,
@@ -112,30 +112,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.1,
     shadowRadius: 3.84,
-
     elevation: 5,
   },
-
-  text_vermell: {
-    marginLeft: 10,
-    backgroundColor: "#ff6f43",
-    marginVertical: 5,
-    borderRadius: 10,
-    padding: 10,
-    color: "white",
-    shadowColor: "grey",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-
-    elevation: 4,
-  },
-
   text_verd: {
-    marginLeft: 10,
     backgroundColor: "#9ccc65",
     marginVertical: 5,
     borderRadius: 10,
@@ -148,15 +127,17 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.23,
     shadowRadius: 2.62,
-
     elevation: 4,
   },
-
-  titol2: {
-    fontSize: 15,
+  mealView: {
+    marginVertical: 10,
   },
-
   disabled: {
     color: "grey",
+    textAlign: "center",
+  },
+  mealTitle: {
+    fontSize: 25,
+    textAlign: "center",
   },
 });

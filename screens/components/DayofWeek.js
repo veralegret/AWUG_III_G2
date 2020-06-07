@@ -36,12 +36,24 @@ const DayofWeek = ({ day }) => {
         <View style={styles.weekDay}>
           <View style={styles.dayInfo}>
             <Text style={styles.number}>{dia}</Text>
-            <Text>Today</Text>
+            <Text style={styles.dayOfWeek}>Today</Text>
           </View>
           <View style={styles.mealRow}>
-            <MealImageWeek meal={0} state={day.meals.desayuno} style={styles.img} />
-            <MealImageWeek meal={1} state={day.meals.comida} style={styles.img} />
-            <MealImageWeek meal={2} state={day.meals.merienda} style={styles.img} />
+            <MealImageWeek
+              meal={0}
+              state={day.meals.desayuno}
+              style={styles.img}
+            />
+            <MealImageWeek
+              meal={1}
+              state={day.meals.comida}
+              style={styles.img}
+            />
+            <MealImageWeek
+              meal={2}
+              state={day.meals.merienda}
+              style={styles.img}
+            />
             <MealImageWeek meal={3} state={day.meals.cena} style={styles.img} />
           </View>
         </View>
@@ -57,12 +69,24 @@ const DayofWeek = ({ day }) => {
         <View style={styles.weekDay}>
           <View style={styles.dayInfo}>
             <Text style={styles.number}>{dia}</Text>
-            <Text>{diaSemana}</Text>
+            <Text style={styles.dayOfWeek}>{diaSemana}</Text>
           </View>
           <View style={styles.mealRow}>
-            <MealImageWeek meal={0} state={day.meals.desayuno} style={styles.img} />
-            <MealImageWeek meal={1} state={day.meals.comida} style={styles.img} />
-            <MealImageWeek meal={2} state={day.meals.merienda} style={styles.img} />
+            <MealImageWeek
+              meal={0}
+              state={day.meals.desayuno}
+              style={styles.img}
+            />
+            <MealImageWeek
+              meal={1}
+              state={day.meals.comida}
+              style={styles.img}
+            />
+            <MealImageWeek
+              meal={2}
+              state={day.meals.merienda}
+              style={styles.img}
+            />
             <MealImageWeek meal={3} state={day.meals.cena} style={styles.img} />
           </View>
         </View>
@@ -81,11 +105,14 @@ const styles = StyleSheet.create({
   },
   weekDay: {
     flexDirection: "row",
-    height: Dimensions.get("screen").height / 10,
+    height: Dimensions.get("screen").height / 10.5,
     alignItems: "center",
   },
   number: {
     fontSize: 32,
+  },
+  dayOfWeek: {
+    fontSize: 12,
   },
   dayInfo: {
     height: 100,
