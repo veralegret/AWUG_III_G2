@@ -241,16 +241,6 @@ const HealthView = ({ labels }) => {
             <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
           </View>
         );
-
-      default:
-        return (
-          <View key={label} style={styles.iconsView}>
-            <View style={pageStyles.fila}>
-              <Text style={styles.boleta}>{"\u2B24"}</Text>
-              <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
-            </View>
-          </View>
-        );
     }
   });
 
@@ -312,17 +302,6 @@ const DietView = ({ labels }) => {
               source={require("../assets/img/etiquetes/low-fat.png")}
             />
             <Text style={styles.text_etiqueta}>{label.toUpperCase()}</Text>
-          </View>
-        );
-
-      default:
-        return (
-          <View key={label}>
-            <View style={pageStyles.fila}>
-              <Text style={styles.text_etiqueta}>
-                No diet labels for this recipe
-              </Text>
-            </View>
           </View>
         );
     }
@@ -484,10 +463,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexWrap: "wrap",
-    width:
-      Dimensions.get("window").width > Dimensions.get("window").width
-        ? Dimensions.get("window").width
-        : Dimensions.get("window").width,
   },
   recipeImg: {
     width: Dimensions.get("window").width,
